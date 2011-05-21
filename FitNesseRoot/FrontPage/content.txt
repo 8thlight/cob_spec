@@ -1,0 +1,4 @@
+!1 Welcome to Cob Spec
+
+!3 Test Suite
+  * SimpleGet
