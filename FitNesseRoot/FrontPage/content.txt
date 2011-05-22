@@ -2,3 +2,5 @@
 
 !3 Test Suite
   * SimpleGet
+  * FourOhFour
+  * TestPage

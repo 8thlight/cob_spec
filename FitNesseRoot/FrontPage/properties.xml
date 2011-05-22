@@ -2,12 +2,12 @@
 <properties>
 	<Edit/>
 	<Files/>
-	<Help/>
+	<Help></Help>
+	<Normal/>
 	<Properties/>
 	<Prune/>
 	<RecentChanges/>
 	<Search/>
-	<Suites/>
-	<Versions/>
+	<Suites></Suites>
 	<WhereUsed/>
 </properties>

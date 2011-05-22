@@ -5,21 +5,28 @@ require "httparty"
 module Fixtures
   
   class HttpBrowser
-    attr_accessor :method, :url
+    attr_accessor :method, :url, :host, :port
     attr_reader :message
     
-    def initialize(host, port)
-      @host = host
-      @port = port
-    end
-        
-    def success
-      response = HTTParty.send(@method, "http://#{@host}:#{@port}#{@url}")
+    def get(url)    
+      response = HTTParty.get("http://#{@host}:#{@port}#{url}")
       @message = "none"
-      return response.code == 200
+      @success =  response.code == 200
     rescue Errno::ECONNREFUSED => e
       @message = "#{e.message}.  Are you sure your server is running on http://#{@host}:#{@port}?"
-      return false
+      @success = false
+    end
+    
+    def success
+      return @success
+    end
+    
+    def set_host(host)
+      @host = host
+    end
+    
+    def set_port(port)
+      @port = port
     end
     
   end
