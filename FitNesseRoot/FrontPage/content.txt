@@ -1,6 +1,11 @@
 !1 Welcome to Cob Spec
 
-!3 Test Suite
+!3 Statuses Test Suite
   * SimpleGet
   * FourOhFour
-  * TestPage
+
+!3 Responses Test Suite
+
+!3 Server Test Suite
+  * SimultaneousRequests
+
