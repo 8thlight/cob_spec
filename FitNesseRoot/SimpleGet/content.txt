@@ -12,7 +12,7 @@
 
 | script | http browser |
 | set host | localhost |
-| set port | 8080      |
+| set port | 3000      |
 | get | / |
-| check | success | true |
+| check | ok response | true |
 | check | message | |
