@@ -11,8 +11,11 @@
 
 
 | script | simultaneous http browsers |
-| set host | localhost |
-| set port | 8080      |
-| add url  | /         |
-| execute  |
-| check    | all ok response | true |
+| set host   | localhost  |
+| set port   | 8080       |
+| set amount | 100        |
+| add url    | /          |
+| set amount | 500        |
+| add url    | /SimpleGet |
+| execute    |
+| check      | all ok response | true |

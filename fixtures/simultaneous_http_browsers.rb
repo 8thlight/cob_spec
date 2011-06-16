@@ -5,7 +5,7 @@ require "typhoeus"
 module Fixtures
 
   class SimultaneousHttpBrowsers
-    attr_writer :host, :port
+    attr_writer :host, :port, :amount
 
     def initialize
        @urls = Array.new
@@ -13,14 +13,13 @@ module Fixtures
     end
 
     def add_url url
-      (0..100).each do
-      puts url.inspect
-          request = Typhoeus::Request.new("http://#{@host}:#{@port}#{url}",
-                                          :method => :get)
-          request.on_complete do |response|
-             @responses << response.code
-          end
-          @urls << request 
+      (0..@amount.to_i).each do
+         request = Typhoeus::Request.new("http://#{@host}:#{@port}#{url}",
+                                         :method => :get)
+         request.on_complete do |response|
+            @responses << response.code
+         end
+         @urls << request 
       end
     end
 
