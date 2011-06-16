@@ -4,9 +4,15 @@ GEM
     crack (0.1.8)
     httparty (0.7.7)
       crack (= 0.1.8)
+    mime-types (1.16)
+    typhoeus (0.2.4)
+      mime-types
+      mime-types
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  httparty
+  crack (= 0.1.8)
+  httparty (= 0.7.7)
+  typhoeus (= 0.2.4)
