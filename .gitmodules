@@ -1,0 +1,3 @@
+[submodule "rubyslim"]
+	path = rubyslim
+	url = https://github.com/unclebob/rubyslim.git
