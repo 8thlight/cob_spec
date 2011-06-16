@@ -23,9 +23,5 @@ module Fixtures
     def not_found_response
       return @status == 404
     end
-
-    def response
-      return @response
-    end
   end
 end
