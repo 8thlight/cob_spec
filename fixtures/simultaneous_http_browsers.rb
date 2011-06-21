@@ -6,6 +6,7 @@ module Fixtures
 
   class SimultaneousHttpBrowsers
     attr_writer :host, :port, :amount
+    attr_reader :time
 
     def initialize
        @urls = Array.new
@@ -29,7 +30,9 @@ module Fixtures
        @urls.each do |request|
           hydra.queue request
        end
+       @time = Time.now
        hydra.run
+       @time = Time.now - @time
     end
 
     def all_ok_response

@@ -8,4 +8,5 @@
 
 !3 Server Test Suite
   * SimultaneousRequests
+  * TimeToComplete
 
