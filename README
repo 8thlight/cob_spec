@@ -17,4 +17,3 @@ Using bundler (1.0.15)
 $ java -jar fitnesse.jar -p 8080
 
 # then go to http://localhost:8080/
-
