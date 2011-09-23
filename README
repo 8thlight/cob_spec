@@ -1,19 +1,13 @@
 $ git clone <repo>
-$ git submodule init
-$ git submodule update
-
-$ cd cob_spec
+$ cd <path_to_project>/cob_spec
 
 # the .rvmrc file specifies ruby-1.8.7-p302 and creates gemset cob_spec
 
+$ git submodule init
+$ git submodule update
+
 $ gem install bundler
 $ bundle install
-
-Installing crack (0.1.8)
-Installing httparty (0.7.7)
-Installing mime-types (1.16)
-Installing typhoeus (0.2.4)
-Using bundler (1.0.15)
 
 $ java -jar fitnesse.jar -p 8080
 
