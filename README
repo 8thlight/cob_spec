@@ -9,6 +9,6 @@ $ git submodule update
 $ gem install bundler
 $ bundle install
 
-$ java -jar fitnesse.jar -p 8080
+$ java -jar fitnesse.jar -p 9090
 
-# then go to http://localhost:8080/
+# then go to http://localhost:9090/
