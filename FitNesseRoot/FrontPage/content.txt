@@ -2,6 +2,7 @@
 
 !3 Statuses Test Suite
   * SimpleGet
+  * SimplePost
   * FourOhFour
 
 !3 Responses Test Suite
