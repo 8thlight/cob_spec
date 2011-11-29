@@ -13,7 +13,7 @@ module Fixtures
       @message = response.message
       @status =  response.code
     rescue Errno::ECONNREFUSED => e
-      @message = "#{e.message}.  Are you sure your server is running on http://#{@host}:#{@port}?"
+      econnrefused e
     end
 
     def post(url)
@@ -21,7 +21,15 @@ module Fixtures
       @message = response.message
       @status = response.code
     rescue Errno::ECONNREFUSED => e
-      @message = "#{e.message}.  Are you sure your server is running on http://#{@host}:#{@port}?"
+      econnrefused e
+    end
+
+    def put(url)
+      @response = HTTParty.put("http://#{@host}:#{@port}#{url}", :body => @data)
+      @message = response.message
+      @status = reponse.code
+    rescue Errno::ECONNREFUSED => e
+      econnrefused e
     end
 
     def ok_response
@@ -31,5 +39,11 @@ module Fixtures
     def not_found_response
       return @status == 404
     end
+
+    private
+
+      def econnrefused e
+        @message = "#{e.message}.  Are you sure your server is running on http://#{@host}:#{@port}?"
+      end
   end
 end
