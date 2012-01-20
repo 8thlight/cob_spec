@@ -27,7 +27,7 @@ module Fixtures
     def put(url)
       @response = HTTParty.put("http://#{@host}:#{@port}#{url}", :body => @data)
       @message = response.message
-      @status = reponse.code
+      @status = response.code
     rescue Errno::ECONNREFUSED => e
       econnrefused e
     end
