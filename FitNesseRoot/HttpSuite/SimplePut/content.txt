@@ -10,10 +10,9 @@
 |Fixtures|
 
 
-| script | simultaneous http browsers |
-| set host   | localhost  |
-| set port   | 5000       |
-| set amount | 10000        |
-| add url    | /          |
-| execute    |
-| show       | time       |
+| script | http browser |
+| set host | localhost |
+| set port | 5000      |
+| set data | "My"="Data" |
+| put | /form |
+| check | ok response | true |

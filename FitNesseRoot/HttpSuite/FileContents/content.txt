@@ -3,7 +3,6 @@
 !define COMMAND_PATTERN {ruby -I %p %m}
 !define PATH_SEPARATOR {-I}
 !path rubyslim/lib
-!path fixtures
 
 
 !|import|
@@ -12,7 +11,6 @@
 
 | script | http browser |
 | set host | localhost |
-| set port | 8080      |
-| set data | {"My":"Data"}   |
-| post | /resource |
-| check | ok response | true |
+| set port | 5000      |
+| get | /file1 |
+| check | body has file contents | public/file1 | true |

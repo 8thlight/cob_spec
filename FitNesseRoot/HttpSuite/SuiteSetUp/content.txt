@@ -1,0 +1,16 @@
+!define TEST_SYSTEM {slim}
+!define TEST_RUNNER {rubyslim/lib/run_ruby_slim.rb}
+!define COMMAND_PATTERN {ruby -I %p %m}
+!define PATH_SEPARATOR {-I}
+!path rubyslim/lib
+
+
+!|import|
+|Fixtures|
+
+
+| script | server |
+| set path | /Users/mylesmegyesi/Development/file-directory-form-server/target/file-directory-form-server-0.1-SNAPSHOT-uberjar.jar |
+| set port | 5000 |
+| set directory | public |
+| start server |

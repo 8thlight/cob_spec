@@ -12,7 +12,8 @@
 
 | script | http browser |
 | set host | localhost |
-| set port | 8080      |
-| set data | {"My":"Data"}   |
-| put | /resource |
-| check | ok response | true |
+| set port | 5000      |
+| set data | "My"="Data"   |
+| post | /form |
+| check | body has content | My | true |
+| check | body has content | Data | true |

@@ -12,6 +12,7 @@ module Fixtures
       @response = HTTParty.get("http://#{@host}:#{@port}#{url}")
       @message = response.message
       @status =  response.code
+      @data = response.body
     rescue Errno::ECONNREFUSED => e
       econnrefused e
     end
@@ -27,7 +28,7 @@ module Fixtures
     def put(url)
       @response = HTTParty.put("http://#{@host}:#{@port}#{url}", :body => @data)
       @message = response.message
-      @status = reponse.code
+      @status = response.code
     rescue Errno::ECONNREFUSED => e
       econnrefused e
     end
@@ -38,6 +39,24 @@ module Fixtures
 
     def not_found_response
       return @status == 404
+    end
+    
+    def body_has_content(content)
+      @data.include? content
+    end
+    
+    def body_has_directory_contents(directory)
+      entries = Dir.entries(directory)
+      entries.delete(".")
+      entries.delete("..")
+      entries.all? { |entry|
+        @data.include? entry
+      }
+    end
+    
+    def body_has_file_contents(file)
+      contents = File.open(file, 'rb') { |f| f.read }
+      @data.include? contents
     end
 
     private

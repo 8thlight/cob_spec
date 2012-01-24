@@ -12,10 +12,10 @@
 
 | script | simultaneous http browsers |
 | set host   | localhost  |
-| set port   | 8080       |
+| set port   | 5000       |
 | set amount | 25         |
 | add url    | /          |
 | set amount | 10         |
-| add url    | /SimultaneousRequests |
+| add url    | /|
 | execute    |
 | check      | all ok response | true |

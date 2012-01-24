@@ -1,10 +1,6 @@
 !1 Welcome to Cob Spec
 
-!3 Statuses Test Suite
-  * SimpleGet
-  * SimplePost
-  * SimplePut
-  * FourOhFour
+.HttpSuite
 
 !3 Responses Test Suite
 
