@@ -1,0 +1,17 @@
+!define TEST_SYSTEM {slim}
+!define TEST_RUNNER {rubyslim/lib/run_ruby_slim.rb}
+!define COMMAND_PATTERN {ruby -I %p %m}
+!define PATH_SEPARATOR {-I}
+!path rubyslim/lib
+
+
+!|import|
+|Fixtures|
+
+
+| script | http browser |
+| set host | localhost |
+| set port | 5000      |
+| get | /some-script-url?variable_1=123459876&variable_2=some_value |
+| check | body has content | variable_1 = 123459876 | true |
+| check | body has content | variable_2 = some_value | true |
