@@ -13,6 +13,7 @@ module Fixtures
       @message = response.message
       @status =  response.code
       @data = response.body
+      ""
     rescue Errno::ECONNREFUSED => e
       econnrefused e
     end
@@ -57,6 +58,14 @@ module Fixtures
     def body_has_file_contents(file)
       contents = File.open(file, 'rb') { |f| f.read }
       @data.include? contents
+    end
+
+    def header_field_value(field)
+      return @response.headers[field]
+    end
+
+    def last_request_path
+      return @response.request.path.to_s
     end
 
     private
