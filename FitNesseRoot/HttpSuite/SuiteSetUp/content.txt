@@ -10,7 +10,7 @@
 
 
 | script | server |
-| set path | /Users/mylesmegyesi/Development/file-directory-form-server/target/file-directory-form-server-0.1-SNAPSHOT-uberjar.jar |
+| set path | /Users/8thlight/Dropbox/8thlight/webserver/target/webserver-0.1.0-SNAPSHOT-standalone.jar |
 | set port | 5000 |
-| set directory | public |
+| set directory | /Users/8thlight/Dropbox/8thlight/cob_spec/public/ |
 | start server |

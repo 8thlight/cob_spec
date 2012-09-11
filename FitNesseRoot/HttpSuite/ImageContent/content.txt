@@ -1,0 +1,20 @@
+!define TEST_SYSTEM {slim}
+!define TEST_RUNNER {rubyslim/lib/run_ruby_slim.rb}
+!define COMMAND_PATTERN {ruby -I %p %m}
+!define PATH_SEPARATOR {-I}
+!path rubyslim/lib
+
+
+!|import|
+|Fixtures|
+
+
+| script | http browser |
+| set host | localhost |
+| set port | 5000      |
+| get | /image.jpeg |
+| check | body has file contents | public/image.jpeg | true |
+| get | /image.png |
+| check | body has file contents | public/image.png | true |
+| get | /image.gif |
+| check | body has file contents | public/image.gif | true |
