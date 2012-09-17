@@ -5,7 +5,7 @@ module Fixtures
     
     def start_server
       @@pid = IO.popen("#{start_command} -p #{@port} -d #{@directory}").pid
-      sleep(1)
+      sleep(5)
     end
     
     def stop_server
