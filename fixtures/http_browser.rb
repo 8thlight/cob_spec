@@ -54,6 +54,10 @@ module Fixtures
         @data.include? entry
       }
     end
+
+    def body_has_link(path)
+      not @data.match(/href=("|')[^'"]*\/#{path}("|')/).nil?
+    end
     
     def body_has_file_contents(file)
       contents = File.open(file, 'rb') { |f| f.read }
