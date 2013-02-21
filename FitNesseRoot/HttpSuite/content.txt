@@ -1,1 +1,8 @@
+!define TEST_SYSTEM {slim}
+!define TEST_RUNNER {rubyslim/bin/rubyslim}
+!define COMMAND_PATTERN {ruby -I %p %m}
+!define PATH_SEPARATOR {:}
+!path rubyslim/lib
+!path fixtures
+
 !contents -R2 -g -p -f -h

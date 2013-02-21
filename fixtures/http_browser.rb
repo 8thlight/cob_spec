@@ -1,5 +1,5 @@
-require "rubygems"
-gem 'httparty'
+#require "rubygems"
+#gem 'httparty'
 require "httparty"
 
 module Fixtures
@@ -41,11 +41,11 @@ module Fixtures
     def not_found_response
       return @status == 404
     end
-    
+
     def body_has_content(content)
       @data.include? content
     end
-    
+
     def body_has_directory_contents(directory)
       entries = Dir.entries(directory)
       entries.delete(".")
@@ -58,7 +58,7 @@ module Fixtures
     def body_has_link(path)
       not @data.match(/href=("|')[^'"]*\/#{path}("|')/).nil?
     end
-    
+
     def body_has_file_contents(file)
       contents = File.open(file, 'rb') { |f| f.read }
       @data.include? contents
