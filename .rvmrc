@@ -1,1 +1,1 @@
-rvm use ruby-1.8.7@cob_spec --create
+rvm use ruby-1.9.3@cob_spec --create

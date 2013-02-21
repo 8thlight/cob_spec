@@ -43,4 +43,4 @@ module Fixtures
     end
 
   end
-end  
+end

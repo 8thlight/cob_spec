@@ -1,5 +1,5 @@
-require "rubygems"
-gem 'httparty'
+#require "rubygems"
+#gem 'httparty'
 require "httparty"
 
 module Fixtures
