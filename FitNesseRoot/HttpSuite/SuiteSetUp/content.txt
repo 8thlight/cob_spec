@@ -2,7 +2,7 @@
 |Fixtures|
 
 | script | server |
-| set path | /Users/nkw/git/franklin/out/artifacts/franklin_jar/franklin.jar |
+| set path | $PATH_TO_SERVER |
 | set port | 5000 |
-| set directory | /Users/nkw/git/cob_spec/public/ |
+| set directory | $PATH_TO_PUBLIC |
 | start server |
