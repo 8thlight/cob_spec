@@ -12,9 +12,7 @@
 
 | script | http browser |
 | set host | localhost |
-| set port | 5000      |
-| put | /content.txt |
-| check | method not allowed response | true |
+| set port | 5000 |
 | put | /file1 |
 | check | method not allowed response | true |
 | put | /file2 |
