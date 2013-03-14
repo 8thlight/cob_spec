@@ -5,7 +5,7 @@ class SimultaneousHttpBrowsers
   attr_reader :time
 
   def initialize
-    @urls = Array.new
+    @requests = []
     @response_codes = {}
     @response_codes.default = 0
   end
@@ -16,13 +16,13 @@ class SimultaneousHttpBrowsers
       request.on_complete do |response|
         @response_codes[response.code] += 1
       end
-      @urls << request
+      @requests << request
     end
   end
 
   def execute
     hydra = Typhoeus::Hydra.new
-    @urls.each do |request|
+    @requests.each do |request|
       hydra.queue request
     end
     @time = Time.now
@@ -35,7 +35,7 @@ class SimultaneousHttpBrowsers
       puts "Status Code:#{code} - Count:#{count}"
     end
 
-    @response_codes[200] == @request.count ? true : false
+    @response_codes[200] == @requests.count ? true : false
   end
 
 end
