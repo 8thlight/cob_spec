@@ -1,0 +1,5 @@
+| script | server |
+| set path | ${USER_JAR} |
+| set port | 5000 |
+| set directory | ${PUBLIC_DIR} |
+| start server |

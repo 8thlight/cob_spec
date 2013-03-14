@@ -1,8 +1,0 @@
-!|import|
-|Fixtures|
-
-| script | server |
-| set path | $PATH_TO_SERVER |
-| set port | 5000 |
-| set directory | $PATH_TO_PUBLIC |
-| start server |

@@ -1,0 +1,8 @@
+| script | simultaneous http browsers |
+| set host   | localhost |
+| set port   | 5000 |
+| set amount | 4096 |
+| add url    | / |
+| execute    |
+| show       | time |
+| check      | all ok response | true |
