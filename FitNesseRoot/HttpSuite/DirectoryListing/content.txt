@@ -1,8 +1,0 @@
-!|import|
-|Fixtures|
-
-| script | http browser |
-| set host | localhost |
-| set port | 5000      |
-| get | / |
-| check | body has directory contents | public | true |

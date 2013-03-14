@@ -1,9 +1,0 @@
-!|import|
-|Fixtures|
-
-| script | http browser |
-| set host | localhost |
-| set port | 5000      |
-| get | /redirect |
-| check | ok response | true |
-| check | last request path | !-http://localhost:5000/-! |
