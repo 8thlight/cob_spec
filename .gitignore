@@ -3,5 +3,5 @@ FitNesseRoot/RecentChanges/
 FitNesseRoot/ErrorLogs
 *.zip
 .bundle
-
+.DS_Store
 *.swp
