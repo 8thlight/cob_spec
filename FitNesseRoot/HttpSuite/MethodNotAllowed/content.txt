@@ -12,11 +12,7 @@
 
 | script | http browser |
 | set host | localhost |
-<<<<<<< HEAD
-| set port | 5000      |
-=======
 | set port | 5000 |
->>>>>>> Removed the assertion on content.txt file.
 | put | /file1 |
 | check | method not allowed response | true |
 | put | /file2 |
