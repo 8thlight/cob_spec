@@ -3,4 +3,4 @@
 | set port | 5000      |
 | set data | "My"="Data"   |
 | post | /form |
-| check | ok response | true |
+| ensure | response code equals | 200 |

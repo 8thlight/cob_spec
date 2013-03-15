@@ -1,41 +1,39 @@
 require "typhoeus"
 
 class SimultaneousHttpBrowsers
-  attr_writer :host, :port, :amount
-  attr_reader :time
+  attr_writer :host, :port
+  attr_reader :time, :requests, :response_codes, :amount
 
   def initialize
-    @requests = []
     @response_codes = {}
     @response_codes.default = 0
+    @hydra = Typhoeus::Hydra.new
   end
 
-  def add_url url
-    (0...@amount.to_i).each do
-      request = ::Typhoeus::Request.new("http://#{@host}:#{@port}#{url}", :method => :get)
+  def add_requests(url, amount=1)
+    (0...amount.to_i).each do
+      request = Typhoeus::Request.new("http://#{@host}:#{@port}#{url}")
       request.on_complete do |response|
-        @response_codes[response.code] += 1
+        response_codes[response.code] += 1
       end
-      @requests << request
+
+      @hydra.queue request
     end
+    @amount = @hydra.queued_requests.count
   end
 
   def execute
-    hydra = Typhoeus::Hydra.new
-    @requests.each do |request|
-      hydra.queue request
-    end
-    @time = Time.now
-    hydra.run
-    @time = Time.now - @time
+    start_time = Time.now
+    @hydra.run
+    @time = Time.now - start_time
   end
 
-  def all_ok_response
-    @response_codes.each do |code, count|
-      puts "Status Code:#{code} - Count:#{count}"
+  def all_responses_equal(code)
+    response_codes.each do |status_code, count|
+      puts "Status Code:#{status_code} - Count:#{count}"
     end
 
-    @response_codes[200] == @requests.count ? true : false
+    response_codes[code.to_i] == amount
   end
 
 end

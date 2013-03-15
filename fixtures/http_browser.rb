@@ -6,36 +6,18 @@ class HttpBrowser
 
   def get(url)
     @response = HTTParty.get("http://#{@host}:#{@port}#{url}")
-    @message = response.message
-    @status =  response.code
-    @data = response.body
-    ""
-  rescue Errno::ECONNREFUSED => e
-    econnrefused e
   end
 
   def post(url)
-    @response = HTTParty.post("http://#{@host}:#{@port}#{url}", :body => @data)
-    @message = response.message
-    @status = response.code
-  rescue Errno::ECONNREFUSED => e
-    econnrefused e
+    @response = HTTParty.post("http://#{host}:#{port}#{url}", :body => data)
   end
 
   def put(url)
-    @response = HTTParty.put("http://#{@host}:#{@port}#{url}", :body => @data)
-    @message = response.message
-    @status = response.code
-  rescue Errno::ECONNREFUSED => e
-    econnrefused e
+    @response = HTTParty.put("http://#{host}:#{port}#{url}", :body => data)
   end
 
-  def ok_response
-    return @status == 200
-  end
-
-  def not_found_response
-    return @status == 404
+  def response_code_equals(code)
+    response.code == code.to_i
   end
 
     def method_not_allowed_response
@@ -91,12 +73,6 @@ class HttpBrowser
     end
 
   def last_request_path
-    return @response.request.path.to_s
-  end
-
-  private
-
-  def econnrefused e
-    @message = "#{e.message}.  Are you sure your server is running on http://#{@host}:#{@port}?"
+    response.request.path.to_s
   end
 end

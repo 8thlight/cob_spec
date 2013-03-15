@@ -2,4 +2,4 @@
 | set host | localhost |
 | set port | 5000      |
 | get | /foobar |
-| check | not found response | true |
+| ensure | response code equals | 404 |
