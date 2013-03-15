@@ -46,6 +46,10 @@ module Fixtures
        return @status == 405
     end
 
+    def partial_content_response
+       return @status == 206
+    end
+
     def body_has_content(content)
       @data.include? content
     end
@@ -63,9 +67,27 @@ module Fixtures
       not @data.match(/href=("|')[^'"]*\/#{path}("|')/).nil?
     end
 
+    def read_file(file)
+       File.open(file, 'rb') { |f| f.read }
+    end
+
     def body_has_file_contents(file)
-      contents = File.open(file, 'rb') { |f| f.read }
+      contents = read_file(file)
       @data.include? contents
+    end
+
+    def get_with_partial_header(url)
+      @response = HTTParty.get("http://#{@host}:#{@port}#{url}", :headers => {"Range: " => "bytes=0-4"})
+      @message = response.message
+      @status = response.code
+      @data = response.body
+      rescue Errno::ECONNREFUSED => e
+       econnrefused e
+    end
+
+    def body_has_partial_file_contents(file)
+      contents = read_file(file)
+      @data == contents[0..3]
     end
 
     def header_field_value(field)
