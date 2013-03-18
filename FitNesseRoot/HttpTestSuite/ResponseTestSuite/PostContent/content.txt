@@ -3,5 +3,5 @@
 | set port | 5000      |
 | set data | "My"="Data"   |
 | post | /form |
-| check | body has content | My | true |
-| check | body has content | Data | true |
+| ensure | body has content | My |
+| ensure | body has content | Data |

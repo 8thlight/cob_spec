@@ -6,14 +6,21 @@ class HttpBrowser
 
   def get(url)
     @response = HTTParty.get("http://#{@host}:#{@port}#{url}")
+    response_present?
   end
 
   def post(url)
     @response = HTTParty.post("http://#{host}:#{port}#{url}", :body => data)
+    response_present?
   end
 
   def put(url)
     @response = HTTParty.put("http://#{host}:#{port}#{url}", :body => data)
+    response_present?
+  end
+
+  def response_present?
+    not (response.nil? || response.empty?)
   end
 
   def response_code_equals(code)
@@ -36,13 +43,11 @@ class HttpBrowser
     entries = Dir.entries(directory)
     entries.delete(".")
     entries.delete("..")
-    entries.all? { |entry|
-      @data.include? entry
-    }
+    entries.all? { |entry| response.body.include? entry }
   end
 
   def body_has_link(path)
-    not @data.match(/href=("|')[^'"]*\/#{path}("|')/).nil?
+    not response.body.match(/href=("|')[^'"]*\/#{path}("|')/).nil?
   end
 
     def read_file(file)
