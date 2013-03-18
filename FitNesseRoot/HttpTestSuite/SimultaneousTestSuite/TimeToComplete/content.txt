@@ -1,8 +1,9 @@
+!-<i><b>Note:</b> 4096 is enough requests to break a single-threaded server.<br/>
+If set too high, running test in quick succession will cause test to intermittently fail.</i>-!
 | script | simultaneous http browsers |
-| set host   | localhost |
-| set port   | 5000 |
-| set amount | 4096 |
-| add url    | / |
-| execute    |
-| show       | time |
-| check      | all ok response | true |
+| set host | localhost |
+| set port | 5000 |
+| add requests; | / | 4096 |
+| execute |
+| show | time |
+| ensure | all response codes equal | 200 |

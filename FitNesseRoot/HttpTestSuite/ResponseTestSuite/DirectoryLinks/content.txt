@@ -2,9 +2,9 @@
 | set host | localhost |
 | set port | 5000      |
 | get | / |
-| check | body has link | file1 | true |
-| check | body has link | file2 | true |
-| check | body has link | image.gif | true |
-| check | body has link | image.jpeg | true |
-| check | body has link | image.png | true |
-| check | body has link | text-file.txt | true |
+| ensure | body has link | file1 |
+| ensure | body has link | file2 |
+| ensure | body has link | image.gif |
+| ensure | body has link | image.jpeg |
+| ensure | body has link | image.png |
+| ensure | body has link | text-file.txt |

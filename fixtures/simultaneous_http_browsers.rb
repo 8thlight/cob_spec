@@ -28,7 +28,7 @@ class SimultaneousHttpBrowsers
     @time = Time.now - start_time
   end
 
-  def all_responses_equal(code)
+  def all_response_codes_equal(code)
     response_codes.each do |status_code, count|
       puts "Status Code:#{status_code} - Count:#{count}"
     end

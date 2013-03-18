@@ -1,7 +1,0 @@
-| script | simultaneous http browsers |
-| set host | localhost |
-| set port | 5000 |
-| add requests; | / | 50 |
-| add requests; | / | 20 |
-| execute |
-| ensure | all responses equal | 200 |

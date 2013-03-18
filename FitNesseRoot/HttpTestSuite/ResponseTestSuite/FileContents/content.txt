@@ -2,4 +2,4 @@
 | set host | localhost |
 | set port | 5000      |
 | get | /file1 |
-| check | body has file contents | public/file1 | true |
+| ensure | body has file contents | public/file1 |
