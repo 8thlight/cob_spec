@@ -28,7 +28,7 @@ class HttpBrowser
   end
 
   def body_has_content(content)
-    @data.include? content
+    response.body.include? content
   end
 
   def body_has_directory_contents(directory)
@@ -42,23 +42,9 @@ class HttpBrowser
     not response.body.match(/href=("|')[^'"]*\/#{path}("|')/).nil?
   end
 
-  def read_file(file)
-    File.open(file, 'rb') { |f| f.read }
-  end
-
   def body_has_file_contents(file)
-    contents = read_file(file)
+    contents = File.open(file, 'rb') { |f| f.read }
     response.body.include? contents
-  end
-
-  def get_with_partial_header(url)
-    @response = HTTParty.get("http://#{@host}:#{@port}#{url}", :headers => {"Range: " => "bytes=0-4"})
-    response_present?
-  end
-
-  def body_has_partial_file_contents(file)
-    contents = read_file(file)
-    response.body == contents[0..3]
   end
 
   def header_field_value(field)
