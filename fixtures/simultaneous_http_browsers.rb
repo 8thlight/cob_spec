@@ -35,5 +35,4 @@ class SimultaneousHttpBrowsers
 
     response_codes[code.to_i] == amount
   end
-
 end
