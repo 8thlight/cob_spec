@@ -1,4 +1,5 @@
 require "httparty"
+require "nokogiri"
 
 class HttpBrowser
   attr_accessor :host, :port, :status, :data
@@ -53,7 +54,8 @@ class HttpBrowser
   end
 
   def body_has_link(path)
-    not response.body.match(/href=("|')[^'"]*\/#{path}("|')/).nil?
+    links = Nokogiri::HTML(response.body).css('a').map { |value| value.to_s }
+    links.include? "<a href=\"/#{path}\">#{path}</a>"
   end
 
   def body_has_file_contents(file)

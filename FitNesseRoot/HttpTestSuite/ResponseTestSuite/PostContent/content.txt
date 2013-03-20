@@ -1,7 +1,0 @@
-| script | http browser |
-| set host | localhost |
-| set port | 5000      |
-| set data | "My"="Data"   |
-| post | /form |
-| ensure | body has content | My |
-| ensure | body has content | Data |
