@@ -7,7 +7,7 @@
 !path fixtures
 
 !3 User-Defined Variables
-!define USER_JAR {/Users/nkw/git/franklin/franklin.jar}
-!define PUBLIC_DIR {/Users/nkw/git/cob_spec/public/}
+!define USER_JAR {/Users/rylan/IdeaProjects/Homestake/out/artifacts/Homestake_jar/Homestake.jar}
+!define PUBLIC_DIR {/Users/rylan/Documents/Apprenticeship/cob_spec/public/}
 
 !contents -R2 -g -p -f -h
