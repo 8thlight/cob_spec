@@ -5,13 +5,13 @@
 | get | /form |
 | ensure | response code equals | 200 |
 | reject | body has content | data = cosby |
-| set data | "data" = "cosby" |
+| set data | data=cosby |
 | post | /form |
 | ensure | response code equals | 200 |
 | get | /form |
 | ensure | response code equals | 200 |
 | ensure | body has content | data = cosby |
-| set data | "data" = "heathcliff" |
+| set data | data=heathcliff |
 | put | /form |
 | ensure | response code equals | 200 |
 | get | /form |
