@@ -6,7 +6,7 @@ To test your server against the Cob Spec suite of tests, follow the instructions
 
     git clone git@github.com:8thlight/cob_spec.git
     git clone git@github.com:marosluuce/rubyslim.git
-    cd <path_to_project>/cob_spec
+    cd cob_spec
 
     bundle install
 
@@ -34,8 +34,8 @@ To run the tests you have to change three variables.
 Http Server Jar
 --------------
 Your server jar needs to take two command line arguments.
-- `-p` which specifies the port to listen on. The test default is 5000.
-- `-d` which specifies the directory to serve files from. The test default is the PUBLIC_DIR variable.
+- `-p` which specifies the port to listen on. Default is `5000`.
+- `-d` which specifies the directory to serve files from. Default is the `PUBLIC_DIR` variable.
 
 Running Tests
 -------------
