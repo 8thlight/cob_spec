@@ -1,0 +1,18 @@
+!-<i><strong>Note:</strong> The next logical step is to send a DELETE request and check that the data is gone.</i><br />-!
+| script | http browser |
+| set host | localhost |
+| set port | 5000 |
+| get | /form |
+| ensure | response code equals | 200 |
+| reject | body has content | data = cosby |
+| set data | data=cosby |
+| post | /form |
+| ensure | response code equals | 200 |
+| get | /form |
+| ensure | response code equals | 200 |
+| ensure | body has content | data = cosby |
+| set data | data=heathcliff |
+| put | /form |
+| ensure | response code equals | 200 |
+| get | /form |
+| ensure | body has content | data = heathcliff |
