@@ -11,6 +11,7 @@ GEM
     mime-types (1.21)
     multi_json (1.6.1)
     multi_xml (0.5.3)
+    nokogiri (1.5.8)
     typhoeus (0.6.2)
       ethon (~> 0.5.10)
 
@@ -19,4 +20,5 @@ PLATFORMS
 
 DEPENDENCIES
   httparty (= 0.10.2)
+  nokogiri (= 1.5.8)
   typhoeus (= 0.6.2)
