@@ -39,7 +39,7 @@ Your server jar needs to take two command line arguments.
 
 Running Tests
 -------------
-To run all tests, click the Suite button.
-To run the simple http request tests, first click the ResponseTestSuite link, then click the Suite button.
-To run the tests that require threading, first click the SimultaniousTestSuite link, then click the Suite button.
-To run a test individually, first click on the test link, then click the Test button.
+- To run all tests, click the Suite button.
+- To run the simple http request tests, first click the ResponseTestSuite link, then click the Suite button.
+- To run the tests that require threading, first click the SimultaniousTestSuite link, then click the Suite button.
+- To run a test individually, first click on the test link, then click the Test button.
