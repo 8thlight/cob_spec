@@ -1,0 +1,4 @@
+!-<i>FIX: "-r ethon" -> Fix for error with requiring "ethon" deep inside RubySlim.<i>-!
+!define COMMAND_PATTERN {ruby -r ethon -I %p %m}
+
+!contents -R2 -g -p -f -h

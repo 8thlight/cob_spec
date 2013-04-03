@@ -1,0 +1,7 @@
+| script | http browser |
+| set host | localhost |
+| set port | 5000 |
+| put | /file1 |
+| ensure | response code equals | 405 |
+| post | /text-file.txt |
+| ensure | response code equals | 405 |
