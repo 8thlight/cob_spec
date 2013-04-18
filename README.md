@@ -26,12 +26,15 @@ To run the tests you have to change three variables.
 - Navigate to the HttpTestSuite.
 - Click on Edit.
 - Update the paths for the User-Defined Variables.
-  - `TEST_RUNNER` is the path to the rubyslim repository clone on your machine.
-  - `HTTP_SERVER_JAR` is the path to server jar file.
+  - `TEST_RUNNER` is the path to the ruby slim executable in your clone of the rubyslim repository on your machine.
+    - Example: `/User/somebody/rubyslim/bin/rubyslim`
+  - `SERVER_START_COMMAND` is the command to start your server.
+    - Example: `java -jar /User/somebody/project/my_jar.jar`
   - `PUBLIC_DIR` is the path to cob spec public folder.
+    - Example: `/User/somebody/cob_spec/public/`
 - Click Save.
 
-Http Server Jar
+Http Server
 --------------
 Your server jar needs to take two command line arguments.
 - `-p` which specifies the port to listen on. Default is `5000`.

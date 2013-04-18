@@ -1,5 +1,5 @@
-| script | server |
-| set path | ${HTTP_SERVER_JAR} |
-| set port | 5000 |
-| set directory | ${PUBLIC_DIR} |
-| start server |
+|script           |server                 |
+|set start command|${SERVER_START_COMMAND}|
+|set port         |5000                   |
+|set directory    |${PUBLIC_DIR}          |
+|start server                             |
