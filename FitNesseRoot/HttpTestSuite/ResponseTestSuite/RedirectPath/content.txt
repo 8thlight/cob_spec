@@ -1,0 +1,6 @@
+|script  |http browser                                   |
+|set host|localhost                                      |
+|set port|5000                                           |
+|get     |/redirect                                      |
+|ensure  |response code equals|200                       |
+|check   |last request path   |!-http://localhost:5000/-!|

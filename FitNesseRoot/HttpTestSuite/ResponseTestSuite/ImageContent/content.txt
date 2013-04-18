@@ -1,0 +1,9 @@
+|script  |http browser                            |
+|set host|localhost                               |
+|set port|5000                                    |
+|get     |/image.jpeg                             |
+|ensure  |body has file contents|public/image.jpeg|
+|get     |/image.png                              |
+|ensure  |body has file contents|public/image.png |
+|get     |/image.gif                              |
+|ensure  |body has file contents|public/image.gif |

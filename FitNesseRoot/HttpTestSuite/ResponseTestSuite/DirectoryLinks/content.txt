@@ -1,0 +1,10 @@
+|script  |http browser               |
+|set host|localhost                  |
+|set port|5000                       |
+|get     |/                          |
+|ensure  |body has link|file1        |
+|ensure  |body has link|file2        |
+|ensure  |body has link|image.gif    |
+|ensure  |body has link|image.jpeg   |
+|ensure  |body has link|image.png    |
+|ensure  |body has link|text-file.txt|
