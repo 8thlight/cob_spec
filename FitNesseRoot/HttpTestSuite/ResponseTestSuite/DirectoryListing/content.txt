@@ -1,0 +1,5 @@
+|script  |http browser                      |
+|set host|localhost                         |
+|set port|5000                              |
+|get     |/                                 |
+|ensure  |body has directory contents|public|

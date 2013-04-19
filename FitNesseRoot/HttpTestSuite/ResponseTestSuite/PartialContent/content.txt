@@ -1,0 +1,6 @@
+|script                 |http browser                                             |
+|set host               |localhost                                                |
+|set port               |5000                                                     |
+|get with partial header|/partial_content.txt                                     |
+|ensure                 |response code equals          |206                       |
+|ensure                 |body has partial file contents|public/partial_content.txt|

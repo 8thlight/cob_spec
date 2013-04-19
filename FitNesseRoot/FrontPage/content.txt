@@ -1,10 +1,4 @@
 !1 Welcome to Cob Spec
+  * HttpTestSuite
 
-.HttpSuite
-
-!3 Responses Test Suite
-
-!3 Server Test Suite
-  * SimultaneousRequests
-  * TimeToComplete
 

@@ -1,46 +1,38 @@
-require "rubygems"
-gem 'typhoeus'
 require "typhoeus"
 
-module Fixtures
+class SimultaneousHttpBrowsers
+  attr_writer :host, :port
+  attr_reader :time, :requests, :response_codes, :amount
 
-  class SimultaneousHttpBrowsers
-    attr_writer :host, :port, :amount
-    attr_reader :time
-
-    def initialize
-       @urls = Array.new
-       @responses = Array.new
-    end
-
-    def add_url url
-      (0..@amount.to_i).each do
-         request = Typhoeus::Request.new("http://#{@host}:#{@port}#{url}",
-                                         :method => :get)
-         request.on_complete do |response|
-            @responses << response.code
-         end
-         @urls << request 
-      end
-    end
-
-    def execute
-       hydra = Typhoeus::Hydra.new
-       hydra.disable_memoization
-       @urls.each do |request|
-          hydra.queue request
-       end
-       @time = Time.now
-       hydra.run
-       @time = Time.now - @time
-    end
-
-    def all_ok_response
-       @responses.each do |code|
-          return false if code != 200
-       end
-       return true
-    end
-
+  def initialize
+    @response_codes = {}
+    @response_codes.default = 0
+    @hydra = Typhoeus::Hydra.new
   end
-end  
+
+  def add_requests(url, amount=1)
+    (0...amount.to_i).each do
+      request = Typhoeus::Request.new("http://#{@host}:#{@port}#{url}")
+      request.on_complete do |response|
+        response_codes[response.code] += 1
+      end
+
+      @hydra.queue request
+    end
+    @amount = @hydra.queued_requests.count
+  end
+
+  def execute
+    start_time = Time.now
+    @hydra.run
+    @time = Time.now - start_time
+  end
+
+  def all_response_codes_equal(code)
+    response_codes.each do |status_code, count|
+      puts "Status Code:#{status_code} - Count:#{count}"
+    end
+
+    response_codes[code.to_i] == amount
+  end
+end
