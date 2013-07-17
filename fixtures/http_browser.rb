@@ -11,7 +11,7 @@ class HttpBrowser
   end
 
   def get_with_partial_header(url)
-    @response = HTTParty.get("http://#{host}:#{port}#{url}", :headers => {"Range: " => "bytes=0-4"})
+    @response = HTTParty.get("http://#{host}:#{port}#{url}", :headers => {"Range" => "bytes=0-4"})
     response_present?
   end
 
