@@ -1,5 +1,6 @@
 require "httparty"
 require "nokogiri"
+require "base64"
 
 class HttpBrowser
   attr_accessor :host, :port, :status, :data
@@ -12,6 +13,17 @@ class HttpBrowser
 
   def get_with_partial_header(url)
     @response = HTTParty.get("http://#{host}:#{port}#{url}", :headers => {"Range" => "bytes=0-4"})
+    response_present?
+  end
+
+  def get_with_credentials(url)
+    encoded_auth = Base64.encode64("admin:hunter2")
+    @response = HTTParty.get("http://#{host}:#{port}#{url}", :headers => {"Authorization" => "Basic #{encoded_auth}"});
+    response_present?
+  end
+
+  def head(url)
+    @response = HTTParty.head("http://#{host}:#{port}#{url}")
     response_present?
   end
 
@@ -41,6 +53,10 @@ class HttpBrowser
     response.body.include? content
   end
 
+  def body_does_not_have_content(content)
+    not response.body.include? content
+  end
+
   def body_has_partial_file_contents(file)
     contents = read_file(file)
     response.body == contents[0..3]
@@ -55,7 +71,7 @@ class HttpBrowser
 
   def body_has_link(path)
     links = Nokogiri::HTML(response.body).css('a').map { |value| value.to_s }
-    links.include? "<a href=\"/#{path}\">#{path}</a>"
+    links.include? "<a href=\"#{path}\">#{path}</a>" or links.include? "<a href=\"/#{path}\">#{path}</a>"
   end
 
   def read_file(file)
