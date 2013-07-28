@@ -4,8 +4,8 @@
 !path fixtures
 
 !3 User-Defined Variables
-!define TEST_RUNNER {/path/to/rubyslim/bin/rubyslim}
-!define SERVER_START_COMMAND {java -jar /path/to/server.jar}
-!define PUBLIC_DIR {/path/to/cob_spec/public/}
+!define TEST_RUNNER {/Users/takayuki/Coding/java/rubyslim}
+!define SERVER_START_COMMAND {java -jar /Users/takayuki/Coding/java/cob_spec/fitnesse.jar}
+!define PUBLIC_DIR {/Users/takayuki/Coding/java/cob_spec/public/}
 
 !contents -R2 -g -p -f -h
