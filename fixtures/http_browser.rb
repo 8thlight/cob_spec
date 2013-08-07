@@ -37,12 +37,22 @@ class HttpBrowser
     response_present?
   end
 
+  def options(url)
+    @response = HTTParty.options("http://#{host}:#{port}#{url}")
+  end
+
   def read_file(file)
     File.open(file, 'rb') { |f| f.read }
   end
 
   def response_present?
     !response.code.nil?
+  end
+
+  def response_header_allow_contains(methods)
+    expected_methods = methods.split(',')
+    response_allow_methods = response.headers["allow"].split(',')
+    expected_methods.all?{|method| response_allow_methods.include? method}
   end
 
   def response_code_equals(code)
