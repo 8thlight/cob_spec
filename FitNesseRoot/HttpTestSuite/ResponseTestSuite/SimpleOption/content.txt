@@ -1,5 +1,5 @@
 !-<i>OPTIONS to /method_options should return the following
-basic methods: GET,HEAD,POST,OPTIONS,PUT.  The next logical thing to do is to respond with a Not Implemented.</i>-!
+basic methods: GET,HEAD,POST,OPTIONS,PUT.</i>-!
 
 |script              |http browser                                              |
 |set host            |localhost                                                 |
@@ -8,12 +8,8 @@ basic methods: GET,HEAD,POST,OPTIONS,PUT.  The next logical thing to do is to re
 |ensure              |response code equals           |200                       |
 |ensure              |response header allow contains |GET,HEAD,POST,OPTIONS,PUT |
 |get                 |/method_options                                           |
-|ensure              |response code equals           |200                       |
 |put                 |/method_options                                           |
-|ensure              |response code equals           |404                       |
 |post                |/method_options                                           |
-|ensure              |response code equals           |404                       |
 |head                |/method_options                                           |
-|ensure              |response code equals           |404                       |
 
 !contents -R2 -g -p -f -h

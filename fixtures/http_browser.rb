@@ -39,6 +39,7 @@ class HttpBrowser
 
   def options(url)
     @response = HTTParty.options("http://#{host}:#{port}#{url}")
+    response_present?
   end
 
   def read_file(file)
@@ -46,7 +47,7 @@ class HttpBrowser
   end
 
   def response_present?
-    !response.code.nil?
+    !response.code.nil? && !response.code.zero?
   end
 
   def response_header_allow_contains(methods)
