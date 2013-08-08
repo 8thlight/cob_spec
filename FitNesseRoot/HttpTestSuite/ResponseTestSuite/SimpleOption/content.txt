@@ -1,0 +1,15 @@
+!-<i>OPTIONS to /method_options should return the following
+basic methods: GET,HEAD,POST,OPTIONS,PUT.</i>-!
+
+|script              |http browser                                              |
+|set host            |localhost                                                 |
+|set port            |5000                                                      |
+|options             |/method_options                                           |
+|ensure              |response code equals           |200                       |
+|ensure              |response header allow contains |GET,HEAD,POST,OPTIONS,PUT |
+|get                 |/method_options                                           |
+|put                 |/method_options                                           |
+|post                |/method_options                                           |
+|head                |/method_options                                           |
+
+!contents -R2 -g -p -f -h
