@@ -1,4 +1,3 @@
-!-<i><strong>Note:</strong> The next logical step is to send a DELETE request and check that the data is gone.</i><br />-!
 |script  |http browser                          |
 |set host|localhost                             |
 |set port|5000                                  |
@@ -16,3 +15,5 @@
 |ensure  |response code equals|200              |
 |get     |/form                                 |
 |ensure  |body has content    |data = heathcliff|
+|delete  |/form                                 |
+|reject  |body has content    |data = heathcliff|

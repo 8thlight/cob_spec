@@ -42,6 +42,11 @@ class HttpBrowser
     response_present?
   end
 
+  def delete(url)
+    @response = HTTParty.delete("http://#{host}:#{port}#{url}")
+    response_present?
+  end
+
   def read_file(file)
     File.open(file, 'rb') { |f| f.read }
   end
