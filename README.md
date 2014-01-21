@@ -1,6 +1,6 @@
 Cob Spec
 ========
-Cob Spec is a suite of tests used to validate a web server to ensure it adheres to [HTTP specifications](http://www.w3.org/Protocols/rfc2616/rfc2616.html). These acceptance tests were created using a testing suite called [Finesse](http://fitnesse.org). FitNesse is an application testing suite that allows you to test the business layer of your application.
+Cob Spec is a suite of tests used to validate a web server to ensure it adheres to [HTTP specifications](http://www.w3.org/Protocols/rfc2616/rfc2616.html). These acceptance tests were created using a testing suite called [FitNesse](http://fitnesse.org). FitNesse is an application testing suite that allows you to test the business layer of your application.
 
 To test your server against the Cob Spec suite of tests, follow the instructions below.
 
