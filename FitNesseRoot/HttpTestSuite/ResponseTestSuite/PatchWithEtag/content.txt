@@ -1,0 +1,18 @@
+|script  |http browser                            |
+|set host|localhost                               |
+|set port|5000                                    |
+|get     |/patch-content.txt                      |
+|ensure  |response code equals|200                |
+|ensure  |body has content    |default content    |
+|set data|patched content                         |
+|set etag|60bb224c68b1ed765a0f84d910de58d0beea91c4|
+|patch   |/patch-content.txt                      |
+|ensure  |response code equals|204                |
+|get     |/patch-content.txt                      |
+|ensure  |response code equals|200                |
+|ensure  |body has content    |patched content    |
+|set data|default content                         |
+|set etag|69bc18dc1edc9e1316348b2eaaca9df83898249f|
+|patch   |/patch-content.txt                      |
+|get     |/patch-content.txt                      |
+|ensure  |body has content    |default content    |

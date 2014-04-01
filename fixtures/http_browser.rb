@@ -3,7 +3,7 @@ require "nokogiri"
 require "base64"
 
 class HttpBrowser
-  attr_accessor :host, :port, :status, :data
+  attr_accessor :host, :port, :status, :data, :etag
   attr_reader :response
 
   def get(url)
@@ -47,6 +47,11 @@ class HttpBrowser
     response_present?
   end
 
+  def patch(url)
+    @response = HTTParty.patch("http://#{host}:#{port}#{url}", :headers => {"Content-Length" => "7", "If-Match" => etag}, :body => data)
+    response_present?
+  end
+
   def read_file(file)
     File.open(file, 'rb') { |f| f.read }
   end
@@ -82,6 +87,7 @@ class HttpBrowser
     entries = Dir.entries(directory)
     entries.delete(".")
     entries.delete("..")
+    entries.delete(".DS_Store")
     entries.all? { |entry| response.body.include? entry }
   end
 
