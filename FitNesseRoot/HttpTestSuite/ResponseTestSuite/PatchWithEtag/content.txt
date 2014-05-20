@@ -1,3 +1,6 @@
+!-<i>Patch is a relatively new HTTP method allowing partial update of resources. HTTP 1.1 specifications require that the client send a SHA1 encoded version of the resource you're attempting to update in an If-Match header. This ensures that the record on the server hasn't changed since you initially requested it. Without this feature two clients could conflict with each other when making an update simultaneously. <a href="http://tools.ietf.org/html/rfc5789">Click here</a> for more information about patch.</i>-!
+
+
 |script  |http browser                            |
 |set host|localhost                               |
 |set port|5000                                    |
