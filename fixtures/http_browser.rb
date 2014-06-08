@@ -84,11 +84,9 @@ class HttpBrowser
   end
 
   def body_has_directory_contents(directory)
-    entries = Dir.entries(directory)
-    entries.delete(".")
-    entries.delete("..")
-    entries.delete(".DS_Store")
-    entries.all? { |entry| response.body.include? entry }
+    entries = Dir.entries(directory).
+      reject { |entry| entry.start_with?('.') }.
+      all? { |entry| response.body.include? entry }
   end
 
   def body_has_link(path)
