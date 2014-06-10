@@ -16,4 +16,6 @@
 |get     |/form                                 |
 |ensure  |body has content    |data = heathcliff|
 |delete  |/form                                 |
+|ensure  |response code equals|200              |
+|get     |/form                                 |
 |reject  |body has content    |data = heathcliff|
