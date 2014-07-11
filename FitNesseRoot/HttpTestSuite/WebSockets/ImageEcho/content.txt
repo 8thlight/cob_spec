@@ -4,5 +4,5 @@
 |set host    |localhost                                  |
 |set port    |5000                                       |
 |set path    |/                                          |
-|send message|Please echo this back                      |
-|ensure      |echoed message equals|Please echo this back|
+|send file|public/image.png|
+|ensure      |echoed file was|public/image.png|

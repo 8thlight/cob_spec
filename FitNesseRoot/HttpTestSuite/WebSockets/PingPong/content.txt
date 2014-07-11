@@ -1,8 +1,8 @@
 !contents -R2 -g -p -f -h
 
-|script  |websockets   |
-|set host|localhost    |
-|set port|5000         |
-|set path|/|
-|ping    |Hello World            |
-|ensure  |pong payload equals|Hello World|
+|script  |websockets                  |
+|set host|localhost                   |
+|set port|5000                        |
+|set path|/                           |
+|ping    |Hello World                 |
+|ensure  |pong payload was|Hello World|

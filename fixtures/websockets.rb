@@ -54,11 +54,11 @@ class Websockets
     end
   end
 
-  def echoed_message_equals(message)
+  def echoed_message_was(message)
     @echoed_message == message
   end
 
-  def pong_payload_equals(payload)
+  def pong_payload_was(payload)
     @pong_payload == payload
   end
 

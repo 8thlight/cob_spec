@@ -1,0 +1,8 @@
+!contents -R2 -g -p -f -h
+
+|script      |websockets                              |
+|set host    |localhost                               |
+|set port    |5000                                    |
+|set path    |/                                       |
+|send message|Please echo this back                   |
+|ensure      |echoed message was|Please echo this back|
