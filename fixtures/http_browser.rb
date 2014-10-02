@@ -62,8 +62,8 @@ class HttpBrowser
 
   def response_header_allow_contains(methods)
     expected_methods = methods.split(',')
-    response_allow_methods = response.headers["allow"].split(',')
-    expected_methods.all?{|method| response_allow_methods.include? method}
+    response_allow_methods = response.headers["Allow"].split(',')
+    expected_methods.all?{|method| response_allow_methods.include? method.strip}
   end
 
   def response_code_equals(code)
