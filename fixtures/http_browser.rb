@@ -80,7 +80,7 @@ class HttpBrowser
 
   def body_has_partial_file_contents(file)
     contents = read_file(file)
-    response.body == contents[0..3]
+    response.body == contents[0..4]
   end
 
   def body_has_directory_contents(directory)
