@@ -1,4 +1,4 @@
-!-<i>Patch is a relatively new HTTP method allowing partial update of resources. HTTP 1.1 specifications require that the client send a SHA1 encoded version of the resource you're attempting to update in an If-Match header. This ensures that the record on the server hasn't changed since you initially requested it. Without this feature two clients could conflict with each other when making an update simultaneously. <a href="http://tools.ietf.org/html/rfc5789">Click here</a> for more information about patch.</i>-!
+!-<i>Patch is a relatively new HTTP method allowing partial update of resources. HTTP 1.1 specifications require that the client send a SHA1 encoded version of the resource you're attempting to update in an If-Match header. This ensures that the record on the server hasn't changed since you initially requested it. Without this feature two clients could conflict with each other when making an update simultaneously. Warning: watch out trailing new lines when reading files as this will cause the server to generate an etag you may not expect. <a href="http://tools.ietf.org/html/rfc5789">Click here</a> for more information about patch.</i>-!
 
 
 |script  |http browser                            |
@@ -7,6 +7,10 @@
 |get     |/patch-content.txt                      |
 |ensure  |response code equals|200                |
 |ensure  |body has content    |default content    |
+|set data|patched content                         |
+|set etag|invalidsha1string                       |
+|patch   |/patch-content.txt                      |
+|ensure  |response code equals|412                |
 |set data|patched content                         |
 |set etag|60bb224c68b1ed765a0f84d910de58d0beea91c4|
 |patch   |/patch-content.txt                      |
