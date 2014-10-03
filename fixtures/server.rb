@@ -3,7 +3,7 @@ class Server
 
   def start_server
     @@pid = IO.popen("#{start_command} -p #{@port} -d #{@directory}").pid
-    sleep(5)
+    sleep(2)
   end
 
   def stop_server
