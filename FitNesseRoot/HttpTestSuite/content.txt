@@ -1,10 +1,9 @@
 !3 Test Parameters
 !define TEST_SYSTEM {slim}
-!define COMMAND_PATTERN {ruby -I %p %m}
-!path fixtures
+
+!path target/CobSpec-1.0.jar
 
 !3 User-Defined Variables
-!define TEST_RUNNER {/path/to/rubyslim/bin/rubyslim}
 -!define SERVER_START_COMMAND {java -jar /path/to/server.jar}
 -!define PUBLIC_DIR {/path/to/cob_spec/public/}
 

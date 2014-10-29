@@ -1,4 +1,4 @@
-|script           |server                 |
+|script           |Server                 |
 |set start command|${SERVER_START_COMMAND}|
 |set port         |5000                   |
 |set directory    |${PUBLIC_DIR}          |
