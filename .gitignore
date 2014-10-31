@@ -3,6 +3,9 @@ FitNesseRoot/RecentChanges/
 FitNesseRoot/ErrorLogs
 *.zip
 .bundle
+target/
+.idea/
+*.iml
 
 *.swp
 
