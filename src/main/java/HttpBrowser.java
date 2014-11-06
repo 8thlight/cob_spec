@@ -4,18 +4,10 @@ import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.client.CredentialsProvider;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.*;
-import org.apache.http.entity.ByteArrayEntity;
-import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.client.HttpClients;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import util.Http;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,60 +41,48 @@ public class HttpBrowser {
     }
 
     public void get(String url) throws IOException {
-        makeStandardRequest(new HttpGet(fullUrlFrom(url)));
+        Http browser = new Http(host, port);
+        storeResponseInfoFrom(browser.get(url));
     }
 
     public void put(String url) throws IOException {
-        HttpPut put = new HttpPut(fullUrlFrom(url));
-        put.setEntity(new ByteArrayEntity(dataAsByteArray()));
-        makeStandardRequest(put);
+        Http browser = new Http(host, port);
+        storeResponseInfoFrom(browser.put(url, data));
     }
 
     public void head(String url) throws IOException {
-        makeStandardRequest(new HttpHead(fullUrlFrom(url)));
+        Http browser = new Http(host, port);
+        storeResponseInfoFrom(browser.head(url));
     }
 
     public void post(String url) throws IOException {
-        HttpPost post = new HttpPost(fullUrlFrom(url));
-        post.setEntity(new ByteArrayEntity(dataAsByteArray()));
-        makeStandardRequest(post);
+        Http browser = new Http(host, port);
+        storeResponseInfoFrom(browser.post(url, data));
     }
 
     public void patch(String url) throws IOException {
-        HttpPatch patch = new HttpPatch(fullUrlFrom(url));
-        patch.setHeader(HttpHeaders.IF_MATCH, eTag);
-        patch.setEntity(new ByteArrayEntity(dataAsByteArray()));
-        makeStandardRequest(patch);
+        Http browser = new Http(host, port);
+        storeResponseInfoFrom(browser.patch(url, data, eTag));
     }
 
     public void delete(String url) throws IOException {
-        makeStandardRequest(new HttpDelete(fullUrlFrom(url)));
+        Http browser = new Http(host, port);
+        storeResponseInfoFrom(browser.delete(url));
     }
 
     public void options(String url) throws IOException {
-        makeStandardRequest(new HttpOptions(fullUrlFrom(url)));
+        Http browser = new Http(host, port);
+        storeResponseInfoFrom(browser.options(url));
     }
 
     public void getWithPartialHeader(String url) throws IOException {
-        HttpClient client = HttpClients.custom().build();
-        HttpUriRequest request = RequestBuilder
-                .get()
-                .setUri(fullUrlFrom(url))
-                .setHeader(HttpHeaders.RANGE, "bytes=0-4")
-                .build();
-        storeResponseInfoFrom(client.execute(request));
+        Http browser = new Http(host, port);
+        storeResponseInfoFrom(browser.getWithPartialHeader(url, "bytes=0-4"));
     }
 
     public void getWithCredentials(String url) throws IOException {
-        CredentialsProvider credsProvider = new BasicCredentialsProvider();
-        credsProvider.setCredentials(
-                new AuthScope("localhost", port),
-                new UsernamePasswordCredentials("admin", "hunter2"));
-        HttpClient client = HttpClientBuilder.create()
-                .setDefaultCredentialsProvider(credsProvider)
-                .build();
-
-        executeRequest(client, new HttpGet(fullUrlFrom(url)));
+        Http browser = new Http(host, port);
+        storeResponseInfoFrom(browser.getWithCredentials(url, "admin", "hunter2"));
     }
 
     public boolean responseCodeEquals(int code) {
@@ -173,22 +153,6 @@ public class HttpBrowser {
         return true;
     }
 
-    private String fullUrlFrom(String url) {
-        return "http://" + host + ":" + port + url;
-    }
-
-    private void makeStandardRequest(HttpRequestBase request) throws IOException {
-        HttpClient client = HttpClientBuilder
-                .create()
-                .disableRedirectHandling()
-                .build();
-        executeRequest(client, request);
-    }
-
-    private void executeRequest(HttpClient client, HttpRequestBase request) throws IOException {
-        storeResponseInfoFrom(client.execute(request));
-    }
-
     private void storeResponseInfoFrom(HttpResponse response) throws IOException {
         this.response = response;
         HttpEntity entity = response.getEntity();
@@ -201,9 +165,5 @@ public class HttpBrowser {
 
     private String latestResponseContentAsString() {
         return new String(latestResponseContent);
-    }
-
-    private byte[] dataAsByteArray() {
-        return (data != null) ? data.getBytes() : "".getBytes();
     }
 }

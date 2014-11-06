@@ -6,14 +6,14 @@ import java.util.concurrent.*;
 
 public class SimultaneousHttpBrowsers {
 
-    private String port;
+    private int port;
     private String host;
     private int requestCount;
-    List<Callable<HttpResponse>> requests;
     private long duration;
+    List<Callable<HttpResponse>> requests;
     List<Future<HttpResponse>> responses;
 
-    public void setPort(String port) {
+    public void setPort(int port) {
         this.port = port;
     }
 
@@ -46,8 +46,8 @@ public class SimultaneousHttpBrowsers {
     }
 
     public String time() {
-        long seconds = (duration / 1000000000);
-        return String.format("%d seconds", seconds);
+        double seconds = (duration / 1000000000);
+        return String.format("%f seconds", seconds);
     }
 
     public boolean allResponseCodesEqual(int code) throws ExecutionException, InterruptedException {
