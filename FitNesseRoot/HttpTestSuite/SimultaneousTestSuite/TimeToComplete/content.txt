@@ -4,7 +4,7 @@ If set too high, running test in quick succession will cause test to intermitten
 |script       |simultaneous http browsers   |
 |set host     |localhost                    |
 |set port     |5000                         |
-|add requests;|/                       |4096|
+|add requests;|/                       |1500|
 |execute                                    |
 |show         |time                         |
 |ensure       |all response codes equal|200 |
