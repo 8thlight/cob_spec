@@ -27,8 +27,8 @@ public class HttpBrowser {
     private String host;
     private String data;
     private String eTag;
-    private String location;
     private int port;
+    private HttpResponse response;
     private int latestResponseCode;
     private byte[] latestResponseContent;
 
@@ -79,6 +79,10 @@ public class HttpBrowser {
         makeStandardRequest(new HttpDelete(fullUrlFrom(url)));
     }
 
+    public void options(String url) throws IOException {
+        makeStandardRequest(new HttpOptions(fullUrlFrom(url)));
+    }
+
     public void getWithPartialHeader(String url) throws IOException {
         HttpClient client = HttpClients.custom().build();
         HttpUriRequest request = RequestBuilder
@@ -99,10 +103,6 @@ public class HttpBrowser {
                 .build();
 
         executeRequest(client, new HttpGet(fullUrlFrom(url)));
-    }
-
-    public String location() {
-        return location;
     }
 
     public boolean responseCodeEquals(int code) {
@@ -143,6 +143,32 @@ public class HttpBrowser {
         return true;
     }
 
+    public String location() {
+        Header locationHeader = response.getFirstHeader("location");
+
+        return (locationHeader != null) ? locationHeader.getValue() : "";
+    }
+
+    public boolean responseHeaderAllowContains(String csvAllows) {
+        String[] allows = csvAllows.split(",");
+        Header responseAllows = response.getFirstHeader(HttpHeaders.ALLOW);
+        String[] serverAllows = responseAllows.getValue().split(",");
+
+        for (String  allow : allows) {
+            boolean containsString = false;
+            for (String serverAllow : serverAllows ) {
+                if (serverAllow.equals(allow)) {
+                    containsString = true;
+                    break;
+                }
+            }
+            if (!containsString)
+                return false;
+        }
+
+        return true;
+    }
+
     private String fullUrlFrom(String url) {
         return "http://" + host + ":" + port + url;
     }
@@ -156,16 +182,12 @@ public class HttpBrowser {
     }
 
     private void executeRequest(HttpClient client, HttpRequestBase request) throws IOException {
-        HttpResponse response = client.execute(request);
-        storeResponseInfoFrom(response);
+        storeResponseInfoFrom(client.execute(request));
     }
 
     private void storeResponseInfoFrom(HttpResponse response) throws IOException {
+        this.response = response;
         HttpEntity entity = response.getEntity();
-        Header locationHeader = response.getFirstHeader("location");
-
-        if (locationHeader != null)
-            location = locationHeader.getValue();
 
         if (entity != null) {
             latestResponseContent = IOUtils.toByteArray(entity.getContent());
