@@ -114,12 +114,16 @@ public class HttpBrowser {
     }
 
     public boolean bodyHasFileContents(String filePath) throws IOException {
-        byte[] fileContent = Files.readAllBytes(Paths.get(filePath));
+        byte[] fileContent = readBytesFromFile(filePath);
         return Arrays.equals(latestResponseContent, fileContent);
     }
 
+    private byte[] readBytesFromFile(String filePath) throws IOException {
+        return Files.readAllBytes(Paths.get(filePath));
+    }
+
     public boolean bodyHasPartialFileContents(String filePath) throws IOException {
-        byte[] fileContent = Files.readAllBytes(Paths.get(filePath));
+        byte[] fileContent = readBytesFromFile(filePath);
         return Arrays.equals(
                 latestResponseContent,
                 Arrays.copyOfRange(fileContent, 0, 4));
