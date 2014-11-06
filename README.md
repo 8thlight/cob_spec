@@ -5,10 +5,8 @@ Cob Spec is a suite of tests used to validate a web server to ensure it adheres 
 To test your server against the Cob Spec suite of tests, follow the instructions below.
 
     git clone git@github.com:8thlight/cob_spec.git
-    git clone git@github.com:marosluuce/rubyslim.git
     cd cob_spec
-
-    bundle install
+    mvn package
 
 Starting Fitnesse Server
 ------------------------
@@ -26,8 +24,6 @@ To run the tests you have to change three variables.
 - Navigate to the HttpTestSuite.
 - Click on Edit.
 - Update the paths for the User-Defined Variables.
-  - `TEST_RUNNER` is the path to the ruby slim executable in your clone of the rubyslim repository on your machine.
-    - Example: `/User/somebody/rubyslim/bin/rubyslim`
   - `SERVER_START_COMMAND` is the command to start your server.
     - Example: `java -jar /User/somebody/project/my_jar.jar`
   - `PUBLIC_DIR` is the path to cob spec public folder.
@@ -46,18 +42,3 @@ Running Tests
 - To run the simple http request tests, first click the ResponseTestSuite link, then click the Suite button.
 - To run the tests that require threading, first click the SimultaniousTestSuite link, then click the Suite button.
 - To run a test individually, first click on the test link, then click the Test button.
-
-
-Running the JMeter Benchmark
-----------------------------
-- Download and extract JMeter from the Apache website: http://jmeter.apache.org/download_jmeter.cgi
-- Start JMeter from the console (``./bin/jmeter``)
-- Open the ``./jmeter/ServerBenchmark.jmx`` file
-- Adjust the ``Thread Group`` to suit your needs:
-  - Number of Threads: The total number of threads to use
-  - Ramp-up period: After this number of seconds the total number of threads will be achieved. 
-  - (Number of Threads)/(Ramp-up period) will give you the requests per seconds
-  - Loop count: The number of times to repeat this experiment
-- If you have run the benchmark before, clear the old data with the "Gear and Broom" icon at the top right.
-- Select the "Summary Report" and hit "Play wihtout Pause" (the play button with the crossed clock) to run the benchmark
-- If you see the percentage of errors rise, reduce the number of total threads until you have no errors 
