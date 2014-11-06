@@ -1,4 +1,5 @@
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.filefilter.HiddenFileFilter;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
@@ -11,7 +12,6 @@ import org.apache.http.client.methods.*;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.commons.io.filefilter.HiddenFileFilter;
 import org.apache.http.impl.client.HttpClients;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -115,7 +115,7 @@ public class HttpBrowser {
 
     public boolean bodyHasFileContents(String filePath) throws IOException {
         byte[] fileContent = Files.readAllBytes(Paths.get(filePath));
-        return Arrays.equals(latestResponseContent,  fileContent);
+        return Arrays.equals(latestResponseContent, fileContent);
     }
 
     public boolean bodyHasPartialFileContents(String filePath) throws IOException {

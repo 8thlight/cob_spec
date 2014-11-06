@@ -1,10 +1,11 @@
 !3 Test Parameters
 !define TEST_SYSTEM {slim}
 
-!path target/CobSpec-1.0.jar
+!pomFile pom.xml
+!path target/Fixtures-1.0.jar
 
 !3 User-Defined Variables
--!define SERVER_START_COMMAND {java -jar /path/to/server.jar}
--!define PUBLIC_DIR {/path/to/cob_spec/public/}
+!define SERVER_START_COMMAND {java -jar /Users/eric/Projects/apprentice_candidates/aaronlahey/CobSpec/jars/CobSpec-1.0.1.jar}
+!define PUBLIC_DIR {/Users/eric/Projects/cob_spec/public/}
 
 !contents -R2 -g -p -f -h
