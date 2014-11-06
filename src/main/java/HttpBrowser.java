@@ -27,6 +27,7 @@ public class HttpBrowser {
     private String host;
     private String data;
     private String eTag;
+    private String location;
     private int port;
     private int latestResponseCode;
     private byte[] latestResponseContent;
@@ -74,6 +75,10 @@ public class HttpBrowser {
         makeStandardRequest(patch);
     }
 
+    public void delete(String url) throws IOException {
+        makeStandardRequest(new HttpDelete(fullUrlFrom(url)));
+    }
+
     public void getWithPartialHeader(String url) throws IOException {
         HttpClient client = HttpClients.custom().build();
         HttpUriRequest request = RequestBuilder
@@ -94,6 +99,10 @@ public class HttpBrowser {
                 .build();
 
         executeRequest(client, new HttpGet(fullUrlFrom(url)));
+    }
+
+    public String location() {
+        return location;
     }
 
     public boolean responseCodeEquals(int code) {
@@ -139,7 +148,10 @@ public class HttpBrowser {
     }
 
     private void makeStandardRequest(HttpRequestBase request) throws IOException {
-        HttpClient client = HttpClientBuilder.create().build();
+        HttpClient client = HttpClientBuilder
+                .create()
+                .disableRedirectHandling()
+                .build();
         executeRequest(client, request);
     }
 
@@ -150,8 +162,13 @@ public class HttpBrowser {
 
     private void storeResponseInfoFrom(HttpResponse response) throws IOException {
         HttpEntity entity = response.getEntity();
+        Header locationHeader = response.getFirstHeader("location");
+
+        if (locationHeader != null)
+            location = locationHeader.getValue();
+
         if (entity != null) {
-            latestResponseContent = IOUtils.toByteArray(response.getEntity().getContent());
+            latestResponseContent = IOUtils.toByteArray(entity.getContent());
             latestResponseCode = response.getStatusLine().getStatusCode();
         }
     }
