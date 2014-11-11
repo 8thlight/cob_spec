@@ -11,8 +11,8 @@ class HttpBrowser
     response_present?
   end
 
-  def get_with_partial_header(url)
-    @response = HTTParty.get("http://#{host}:#{port}#{url}", :headers => {"Range" => "bytes=0-4"})
+  def get_range_start_range_end(url, range_start, range_end)
+    @response = HTTParty.get("http://#{host}:#{port}#{url}", :headers => {"Range" => "bytes=#{range_start}-#{range_end}"})
     response_present?
   end
 
@@ -78,9 +78,9 @@ class HttpBrowser
     not response.body.include? content
   end
 
-  def body_has_partial_file_contents(file)
+  def body_has_partial_file_contents_from_to(file, from, to)
     contents = read_file(file)
-    response.body == contents[0..4]
+    response.body == contents[from.to_i..to.to_i]
   end
 
   def body_has_directory_contents(directory)
