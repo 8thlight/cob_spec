@@ -98,6 +98,10 @@ class HttpBrowser
     File.open(file, 'rb') { |f| f.read }
   end
 
+  def body_has_no_content
+    response.body.nil?
+  end
+
   def body_has_file_contents(file)
     contents = read_file(file)
     response.body.include? contents
