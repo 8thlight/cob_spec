@@ -1,0 +1,7 @@
+|script  |http browser                            |
+|set host|localhost                               |
+|set port|5000                                    |
+|head    |/file1                                  |
+|ensure  |response code equals |200               |
+|check   |header field value   |Content-Length| 14| 
+|ensure  |body has no content                     |
