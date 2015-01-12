@@ -1,0 +1,8 @@
+!contents -R2 -g -p -f -h
+
+|script      |websockets                                 |
+|set host    |localhost                                  |
+|set port    |5000                                       |
+|set path    |/                                          |
+|send file|public/image.png|
+|ensure      |echoed file was|public/image.png|
