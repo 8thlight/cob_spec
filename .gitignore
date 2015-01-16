@@ -5,3 +5,8 @@ FitNesseRoot/ErrorLogs
 .bundle
 
 *.swp
+
+*.DS_Store
+.idea/
+CobSpec.iml
+target/
