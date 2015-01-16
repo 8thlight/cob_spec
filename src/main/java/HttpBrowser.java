@@ -155,11 +155,13 @@ public class HttpBrowser {
 
     private void storeResponseInfoFrom(HttpResponse response) throws IOException {
         this.response = response;
-        HttpEntity entity = response.getEntity();
+        latestResponseCode = response.getStatusLine().getStatusCode();
 
+        HttpEntity entity = response.getEntity();
         if (entity != null) {
             latestResponseContent = IOUtils.toByteArray(entity.getContent());
-            latestResponseCode = response.getStatusLine().getStatusCode();
+        } else {
+            latestResponseContent = new byte[0];
         }
     }
 
