@@ -1,5 +1,7 @@
 package util;
 
+import jdk.nashorn.internal.ir.RuntimeNode;
+import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
 import org.apache.http.auth.AuthScope;
@@ -69,15 +71,19 @@ public class Http {
     }
 
     public HttpResponse getWithCredentials(String url, String username, String password) throws IOException {
-        CredentialsProvider credsProvider = new BasicCredentialsProvider();
-        credsProvider.setCredentials(
-                new AuthScope(host, port),
-                new UsernamePasswordCredentials(username, password));
-        HttpClient client = HttpClientBuilder.create()
-                .setDefaultCredentialsProvider(credsProvider)
+        HttpClient client = HttpClients.custom().build();
+
+        String authString = username + ":" + password;
+        byte[] authEncBytes = Base64.encodeBase64(authString.getBytes());
+        String authStringEnc = new String(authEncBytes);
+
+        HttpUriRequest request = RequestBuilder
+                .get()
+                .setUri(fullUrlFrom(url))
+                .setHeader(HttpHeaders.AUTHORIZATION, authStringEnc)
                 .build();
 
-        return executeRequest(client, new HttpGet(fullUrlFrom(url)));
+        return client.execute(request);
     }
 
     public HttpResponse makeStandardRequest(HttpRequestBase request) throws IOException {
