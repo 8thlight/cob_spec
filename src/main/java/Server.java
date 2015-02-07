@@ -2,7 +2,6 @@ public class Server {
     private String startCommand;
     private String directory;
     private String port;
-    private static int pid;
     static private Process process;
 
     public void setStartCommand(String command) {

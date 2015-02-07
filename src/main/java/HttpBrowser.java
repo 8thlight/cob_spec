@@ -75,9 +75,9 @@ public class HttpBrowser {
         storeResponseInfoFrom(browser.options(url));
     }
 
-    public void getWithPartialHeader(String url) throws IOException {
+    public void getRangeStartRangeEnd(String url, String start, String end) throws IOException {
         Http browser = new Http(host, port);
-        storeResponseInfoFrom(browser.getWithPartialHeader(url, "bytes=0-4"));
+        storeResponseInfoFrom(browser.getWithPartialHeader(url, "bytes=" + start + "-" + end));
     }
 
     public void getWithCredentials(String url) throws IOException {
@@ -102,11 +102,11 @@ public class HttpBrowser {
         return Files.readAllBytes(Paths.get(filePath));
     }
 
-    public boolean bodyHasPartialFileContents(String filePath) throws IOException {
+    public boolean bodyHasPartialFileContentsFromTo(String filePath, int from, int to) throws IOException {
         byte[] fileContent = readBytesFromFile(filePath);
         return Arrays.equals(
                 latestResponseContent,
-                Arrays.copyOfRange(fileContent, 0, 4));
+                Arrays.copyOfRange(fileContent, from, to + 1));
     }
 
     public boolean bodyHasLink(String link) {
