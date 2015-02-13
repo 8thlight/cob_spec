@@ -68,14 +68,13 @@ public class Http {
     public HttpResponse getWithCredentials(String url, String username, String password) throws IOException {
         HttpClient client = HttpClients.custom().build();
 
-        String authString = username + ":" + password;
-        byte[] authEncBytes = Base64.encodeBase64(authString.getBytes());
-        String authStringEnc = new String(authEncBytes);
+        String authCredentials = username + ":" + password;
+        String authSchemeWithCredentials = "Basic " + base64Encode(authCredentials);
 
         HttpUriRequest request = RequestBuilder
                 .get()
                 .setUri(fullUrlFrom(url))
-                .setHeader(HttpHeaders.AUTHORIZATION, authStringEnc)
+                .setHeader(HttpHeaders.AUTHORIZATION, authSchemeWithCredentials)
                 .build();
 
         return client.execute(request);
@@ -99,5 +98,10 @@ public class Http {
 
     private byte[] dataAsByteArray(String data) {
         return (data != null) ? data.getBytes() : "".getBytes();
+    }
+
+    private String base64Encode(String s) {
+        byte[] encodedBytes = Base64.encodeBase64(s.getBytes());
+        return new String(encodedBytes);
     }
 }
