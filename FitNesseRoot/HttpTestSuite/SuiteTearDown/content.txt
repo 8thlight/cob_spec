@@ -1,2 +1,2 @@
-| script | server |
+| script | Server |
 | stop server |
