@@ -95,11 +95,19 @@ public class HttpBrowser {
 
     public boolean bodyHasFileContents(String filePath) throws IOException {
         byte[] fileContent = readBytesFromFile(filePath);
-        return Arrays.equals(latestResponseContent, fileContent);
+        return includes(fileContent, latestResponseContent);
     }
 
     private byte[] readBytesFromFile(String filePath) throws IOException {
         return Files.readAllBytes(Paths.get(filePath));
+    }
+
+    private boolean includes(byte[] first, byte[] second) {
+        for(int i = 0; i < first.length; i++) {
+            if (first[i] != second[i])
+              return false;
+        }
+        return true;
     }
 
     public boolean bodyHasPartialFileContentsFromTo(String filePath, int from, int to) throws IOException {
