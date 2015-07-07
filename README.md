@@ -19,7 +19,7 @@ Open your browser and go to http://localhost:9090. You should see the Cob Spec w
 
 Configuring Cob Spec
 -------------------
-To run the tests you have to change three variables.
+To run the tests you have to change some variables.
 
 - Navigate to the HttpTestSuite.
 - Click on Edit.
