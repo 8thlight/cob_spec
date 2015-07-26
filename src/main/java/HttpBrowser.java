@@ -92,6 +92,13 @@ public class HttpBrowser {
         storeResponseInfoFrom(browser.getWithCredentials(url, "admin", "hunter2"));
     }
 
+    public void getWithCookie(String url) throws IOException {
+        Http browser = new Http(host, port);
+        Header setCookie = response.getFirstHeader("Set-Cookie");
+        String cookie = setCookie.getValue();
+        storeResponseInfoFrom(browser.getWithCookie(url, cookie));
+    }
+
     public boolean responseCodeEquals(int code) {
         return latestResponseCode == code;
     }
@@ -116,7 +123,7 @@ public class HttpBrowser {
     private boolean includes(byte[] first, byte[] second) {
         for(int i = 0; i < first.length; i++) {
             if (first[i] != second[i])
-              return false;
+                return false;
         }
         return true;
     }
