@@ -80,6 +80,16 @@ public class Http {
         return client.execute(request);
     }
 
+    public HttpResponse getWithCookie(String url, String cookie) throws IOException {
+        HttpClient client = HttpClients.custom().build();
+        HttpUriRequest request = RequestBuilder
+                .get()
+                .setUri(fullUrlFrom(url))
+                .setHeader("Cookie", cookie)
+                .build();
+        return client.execute(request);
+    }
+
     public HttpResponse makeStandardRequest(HttpRequestBase request) throws IOException {
         HttpClient client = HttpClientBuilder
                 .create()
