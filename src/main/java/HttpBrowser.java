@@ -184,6 +184,15 @@ public class HttpBrowser {
 	return authTypeHeader != null && authTypeHeader.getValue().contains(AuthSchemes.BASIC);
     }
 
+    public boolean contentTypeIs(String type) {
+        Header contentTypeHeader = response.getFirstHeader(HttpHeaders.CONTENT_TYPE);
+        if (contentTypeHeader == null)
+            return false;
+
+        String contentType = contentTypeHeader.getValue();
+
+        return contentType.contains(type);
+    }
 
     private void storeResponseInfoFrom(HttpResponse response) throws IOException {
         this.response = response;

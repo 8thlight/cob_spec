@@ -1,0 +1,13 @@
+| script | http browser |
+| set host | localhost |
+| set port | 5000 |
+| get | /image.jpeg |
+| ensure | content type is | image/jpeg |
+| get | /image.png |
+| ensure | content type is | image/png |
+| get | /image.gif |
+| ensure | content type is | image/gif |
+| get | /text-file.txt |
+| ensure | content type is | text/plain |
+
+!contents -R2 -g -p -f -h
