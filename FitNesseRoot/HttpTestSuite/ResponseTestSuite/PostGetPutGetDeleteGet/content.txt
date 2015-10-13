@@ -2,7 +2,7 @@
 |set host|localhost                             |
 |set port|5000                                  |
 |get     |/form                                 |
-|ensure  |response code equals|200              |
+|ensure  |response code equals|404              |
 |reject  |body has content    |data=fatcat     |
 |set data|data=fatcat                            |
 |post    |/form                                 |
@@ -18,4 +18,5 @@
 |delete  |/form                                 |
 |ensure  |response code equals|200              |
 |get     |/form                                 |
+|ensure  |response code equals|404              |
 |reject  |body has content    |data=heathcliff|
