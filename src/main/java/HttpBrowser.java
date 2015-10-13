@@ -1,5 +1,6 @@
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.filefilter.HiddenFileFilter;
+import org.apache.http.client.config.AuthSchemes;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
@@ -160,6 +161,12 @@ public class HttpBrowser {
 
         return true;
     }
+
+    public boolean hasBasicAuth() {
+	Header authTypeHeader = response.getFirstHeader(HttpHeaders.WWW_AUTHENTICATE);
+	return authTypeHeader != null && authTypeHeader.getValue().contains(AuthSchemes.BASIC);
+    }
+
 
     private void storeResponseInfoFrom(HttpResponse response) throws IOException {
         this.response = response;
