@@ -6,7 +6,7 @@ A request passing username "admin" and password "hunter2" should return log info
 |set port            |5000                                        |
 |get                 |/logs                                       |
 |ensure              |response code equals|401                    |
-|ensure              |body has content    |Authentication required|
+|ensure              |has basic auth                              |
 |reject              |body has content    |GET /log HTTP/1.1      |
 |get                 |/log                                        |
 |put                 |/these                                      |
