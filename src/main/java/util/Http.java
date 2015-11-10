@@ -10,6 +10,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class Http {
     private final String host;
@@ -53,6 +54,10 @@ public class Http {
 
     public HttpResponse options(String url) throws IOException {
         return makeStandardRequest(new HttpOptions(fullUrlFrom(url)));
+    }
+
+    public HttpResponse bogusRequest(String url) throws IOException, URISyntaxException {
+        return makeStandardRequest(new BogusRequest(fullUrlFrom(url)));
     }
 
     public HttpResponse getWithPartialHeader(String url, String range) throws IOException {

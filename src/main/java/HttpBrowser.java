@@ -12,6 +12,7 @@ import util.Http;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -74,6 +75,11 @@ public class HttpBrowser {
     public void options(String url) throws IOException {
         Http browser = new Http(host, port);
         storeResponseInfoFrom(browser.options(url));
+    }
+
+    public void bogusRequest(String url) throws IOException, URISyntaxException {
+        Http browser = new Http(host, port);
+        storeResponseInfoFrom(browser.bogusRequest(url));
     }
 
     public void getRangeStartRangeEnd(String url, String start, String end) throws IOException {
