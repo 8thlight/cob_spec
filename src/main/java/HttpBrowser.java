@@ -100,6 +100,10 @@ public class HttpBrowser {
         return latestResponseContentAsString().contains(content);
     }
 
+    public boolean bodyHasNoContent() throws IOException {
+        return latestResponseContentAsString().isEmpty();
+    }
+
     public boolean bodyHasFileContents(String filePath) throws IOException {
         byte[] fileContent = readBytesFromFile(filePath);
         return includes(fileContent, latestResponseContent);
