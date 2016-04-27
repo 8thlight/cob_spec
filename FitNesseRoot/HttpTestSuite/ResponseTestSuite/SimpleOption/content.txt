@@ -11,5 +11,11 @@ basic methods: GET,HEAD,POST,OPTIONS,PUT.</i>-!
 |put                 |/method_options                                           |
 |post                |/method_options                                           |
 |head                |/method_options                                           |
+|options             |/method_options2                                          |
+|ensure              |response code equals           |200                       |
+|ensure              |response header allow contains |GET,OPTIONS               |
+|reject              |response header allow contains |HEAD,POST,PUT             |
+|get                 |/method_options2                                          |
+|options             |/method_options2                                          |
 
 !contents -R2 -g -p -f -h
