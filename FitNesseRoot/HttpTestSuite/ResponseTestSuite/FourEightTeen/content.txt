@@ -14,6 +14,8 @@ Some resources:<br>
 | script | http browser |
 | set host | localhost |
 | set port | 5000 |
-| get | /teapot |
+| get | /coffee |
 | ensure | response code equals | 418 |
 | ensure | body has content | I'm a teapot |
+| get | /tea |
+| ensure | response code equals | 200 |
