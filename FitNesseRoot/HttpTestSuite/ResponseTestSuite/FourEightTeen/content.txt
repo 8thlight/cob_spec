@@ -1,0 +1,21 @@
+!-The 418 code is an HTTP response code not implemented in many systems.<br>
+
+As we aspire for excellence in our code, we should match the standards set by titans like Google and implement the 418 response code in our servers.<br>
+
+The 418 code is simple, but it adds a nuance to your server that will make it instantly enviable.<br><br>
+
+Some resources:<br>
+
+ * <a href="http://www.google.com/teapot">Google 418 Code Implementation</a><br>
+ * <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Client_Error">Wikipedia page on the 400 series status codes, including the 418</a><br>
+ * <a href="https://tools.ietf.org/html/rfc2324">The memo on the Hyper Text Coffee Pot Control Protocol, the protocol that added this code and other functionality.</a>
+-!
+
+| script | http browser |
+| set host | localhost |
+| set port | 5000 |
+| get | /coffee |
+| ensure | response code equals | 418 |
+| ensure | body has content | I'm a teapot |
+| get | /tea |
+| ensure | response code equals | 200 |
