@@ -1,0 +1,11 @@
+!-<i>Head is an HTTP Method that only gets the response header with no body content.</i>-!
+
+| script | http browser |
+| set host | localhost |
+| set port | 5000      |
+| head | / |
+| ensure | response code equals | 200 |
+| ensure | body has no content |
+| head | /foobar |
+| ensure | response code equals | 404 |
+| ensure | body has no content |
