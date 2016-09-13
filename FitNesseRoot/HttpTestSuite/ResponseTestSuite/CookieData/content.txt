@@ -1,0 +1,14 @@
+!-<i>Cookie</i>-!
+
+|script         |http browser                |
+|set host       |localhost                   |
+|set port       |5000                        |
+|get            |/cookie?type=chocolate      |
+|ensure         |response code equals|200    |
+|ensure         |body has content    |Eat    |
+|get with cookie|/eat_cookie                 |
+|ensure         |response code equals|200    |
+|ensure         |body has content    |mmmm chocolate|
+
+
+!contents -R2 -g -p -f -h
