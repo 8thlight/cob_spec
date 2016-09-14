@@ -3,10 +3,16 @@
 |set port|5000                                                                          |
 |get     |/partial_content.txt          |range start               |0   |range end|4    |
 |ensure  |response code equals          |206                                            |
+|check   |content range                 |bytes 0-4/77                                   |
 |ensure  |body has partial file contents|public/partial_content.txt|from|0        |to|4 |
 |get     |/partial_content.txt          |range start               |    |range end|6    |
 |ensure  |response code equals          |206                                            |
+|check   |content range                 |bytes 71-76/77                                 |
 |ensure  |body has partial file contents|public/partial_content.txt|from|71       |to|76|
 |get     |/partial_content.txt          |range start               |4   |range end|     |
 |ensure  |response code equals          |206                                            |
+|check   |content range                 |bytes 4-76/77                                  |
 |ensure  |body has partial file contents|public/partial_content.txt|from|4        |to|76|
+|get     |/partial_content.txt          |range start               |75  |range end|80   |
+|ensure  |response code equals          |416                                            |
+|check   |content range                 |bytes */77                                     |
