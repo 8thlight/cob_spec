@@ -19,3 +19,10 @@
 |patch   |/patch-content.txt                      |
 |get     |/patch-content.txt                      |
 |ensure  |body has content    |default content    |
+|set data|patched content                         |
+|set etag|5c36acad75b78b82be6d9cbbd6143ab7e0cc04b0|
+|patch   |/patch-content.txt                      |
+|ensure  |response code equals|409                |
+|get     |/patch-content.txt                      |
+|ensure  |body has content    |default content    |
+
