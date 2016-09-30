@@ -160,9 +160,9 @@ public class HttpBrowser {
     }
 
     public boolean responseHeaderAllowContains(String csvAllows) {
-        String[] allows = csvAllows.split(",");
+        String[] allows = csvAllows.split(", *");
         Header responseAllows = response.getFirstHeader(HttpHeaders.ALLOW);
-        String[] serverAllows = responseAllows.getValue().split(",");
+        String[] serverAllows = responseAllows.getValue().split(", *");
 
         for (String  allow : allows) {
             boolean containsString = false;
