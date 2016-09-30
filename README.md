@@ -28,6 +28,8 @@ To run the tests you have to change some variables.
     - Example: `java -jar /User/somebody/project/my_jar.jar`
   - `PUBLIC_DIR` is the path to cob spec public folder.
     - Example: `/User/somebody/cob_spec/public/`
+- Note that you have to remove the `-` at the beginning of the line in order for
+  the User-Defined Variables to be recognized.
 - Click Save.
 
 Http Server
