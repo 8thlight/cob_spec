@@ -1,10 +1,10 @@
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.filefilter.HiddenFileFilter;
-import org.apache.http.client.config.AuthSchemes;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.config.AuthSchemes;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -121,7 +121,7 @@ public class HttpBrowser {
     }
 
     private boolean includes(byte[] first, byte[] second) {
-        for(int i = 0; i < first.length; i++) {
+        for (int i = 0; i < first.length; i++) {
             if (first[i] != second[i])
                 return false;
         }
@@ -164,9 +164,9 @@ public class HttpBrowser {
         Header responseAllows = response.getFirstHeader(HttpHeaders.ALLOW);
         String[] serverAllows = responseAllows.getValue().split(",");
 
-        for (String  allow : allows) {
+        for (String allow : allows) {
             boolean containsString = false;
-            for (String serverAllow : serverAllows ) {
+            for (String serverAllow : serverAllows) {
                 if (serverAllow.equals(allow)) {
                     containsString = true;
                     break;
@@ -180,8 +180,13 @@ public class HttpBrowser {
     }
 
     public boolean hasBasicAuth() {
-	Header authTypeHeader = response.getFirstHeader(HttpHeaders.WWW_AUTHENTICATE);
-	return authTypeHeader != null && authTypeHeader.getValue().contains(AuthSchemes.BASIC);
+        Header authTypeHeader = response.getFirstHeader(HttpHeaders.WWW_AUTHENTICATE);
+        return authTypeHeader != null && authTypeHeader.getValue().contains(AuthSchemes.BASIC);
+    }
+
+    public boolean responseHasDate() {
+        Header dateHeader = response.getFirstHeader(HttpHeaders.DATE);
+        return dateHeader != null;
     }
 
     public boolean contentTypeIs(String type) {
