@@ -209,4 +209,9 @@ public class HttpBrowser {
     private String latestResponseContentAsString() {
         return new String(latestResponseContent);
     }
+
+    public boolean responseHasDate() {
+        Header responseDate = response.getFirstHeader(HttpHeaders.DATE);
+        return (responseDate != null) && !("".equals(responseDate.getValue()));
+    }
 }
