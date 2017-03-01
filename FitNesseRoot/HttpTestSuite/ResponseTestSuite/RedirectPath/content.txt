@@ -1,6 +1,6 @@
-|script  |http browser                                   |
-|set host|localhost                                      |
-|set port|5000                                           |
-|get     |/redirect                                      |
-|ensure  |response code equals|302                       |
-|check   |location            |!-http://localhost:5000/-!|
+|script  |http browser              |
+|set host|localhost                 |
+|set port|5000                      |
+|get     |/redirect                 |
+|ensure  |response code equals|302  |
+|check   |location            |!-/-!|
