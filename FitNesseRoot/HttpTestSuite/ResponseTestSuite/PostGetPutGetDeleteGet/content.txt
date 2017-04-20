@@ -1,21 +1,21 @@
-|script  |http browser                          |
-|set host|localhost                             |
-|set port|5000                                  |
-|get     |/form                                 |
-|ensure  |response code equals|200              |
-|reject  |body has content    |data=fatcat     |
-|set data|data=fatcat                            |
-|post    |/form                                 |
-|ensure  |response code equals|200              |
-|get     |/form                                 |
-|ensure  |response code equals|200              |
-|ensure  |body has content    |data=fatcat     |
-|set data|data=heathcliff                       |
-|put     |/form                                 |
-|ensure  |response code equals|200              |
-|get     |/form                                 |
-|ensure  |body has content    |data=heathcliff|
-|delete  |/form                                 |
-|ensure  |response code equals|200              |
-|get     |/form                                 |
-|reject  |body has content    |data=heathcliff|
+|script  |http browser                         |
+|set host|localhost                            |
+|set port|5000                                 |
+|get     |/form/feline                         |
+|ensure  |response code equals |404            |
+|set data|data=fatcat                          |
+|post    |/form                                |
+|ensure  |response code equals |201            |
+|check   |location|/form/feline                |
+|get     |/form/feline                         |
+|ensure  |response code equals |200            |
+|ensure  |body has content     |data=fatcat    |
+|set data|data=heathcliff                      |
+|put     |/form/feline                         |
+|ensure  |response code equals |200            |
+|get     |/form/feline                         |
+|ensure  |body has content     |data=heathcliff|
+|delete  |/form/feline                         |
+|ensure  |response code equals |200            |
+|get     |/form/feline                         |
+|ensure  |response code equals |404            |
