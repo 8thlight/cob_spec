@@ -2,5 +2,5 @@
 |set host|localhost               |
 |set port|5000                    |
 |set data|"My"="Data"             |
-|post    |/form                   |
+|post    |/noop-form              |
 |ensure  |response code equals|200|

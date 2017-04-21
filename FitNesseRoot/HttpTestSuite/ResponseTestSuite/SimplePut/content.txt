@@ -1,6 +1,10 @@
-|script  |http browser            |
-|set host|localhost               |
-|set port|5000                    |
-|set data|"My"="Data"             |
-|put     |/form                   |
-|ensure  |response code equals|200|
+|script  |http browser                    |
+|set host|localhost                       |
+|set port|5000                            |
+|set data|"My"="Data"                     |
+|put     |/form/feline                    |
+|ensure  |response code equals|201        |
+|get     |/form/feline                    |
+|ensure  |response code equals|200        |
+|ensure  |body has content    |"My"="Data"|
+|delete  |/form/feline                    |
