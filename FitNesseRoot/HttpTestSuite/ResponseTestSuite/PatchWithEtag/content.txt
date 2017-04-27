@@ -1,21 +1,44 @@
-!-<i>Patch is a relatively new HTTP method allowing partial update of resources. HTTP 1.1 specifications require that the client send a SHA1 encoded version of the resource you're attempting to update in an If-Match header. This ensures that the record on the server hasn't changed since you initially requested it. Without this feature two clients could conflict with each other when making an update simultaneously. <a href="http://tools.ietf.org/html/rfc5789">Click here</a> for more information about patch.</i>-!
+!-Patch is a relatively new HTTP method (<a href="http://tools.ietf.org/html/rfc5789">RFC 5789</a>)
+allowing partial update of resources.</br>
+</br>
+The HTTP 1.1 specifications allow the client to send the ETag of the resource it's attempting to update
+in an If-Match header. In this case we are using a SHA-1 of the content as an ETag. This ensures that
+the record on the server hasn't changed since you initially requested it. Without this feature two
+clients could conflict with each other when making an update simultaneously.</br>
+</br>
+PATCH is intended to be used with a media-type that describes the changes to be made to the resource.
+For patching a text file, the obvious choice is the unix diff format.  Diffs can be created with the
+<code>diff</code> command and can then be applied on the server with the <code>patch</code> command.
+Because there is no registered media-type for a unix diff, we made one up for this test
+<code>application/unix-diff</code>-!
 
-
-|script  |http browser                            |
-|set host|localhost                               |
-|set port|5000                                    |
-|get     |/patch-content.txt                      |
-|ensure  |response code equals|200                |
-|ensure  |body has content    |default content    |
-|set data|patched content                         |
-|set etag|dc50a0d27dda2eee9f65644cd7e4c9cf11de8bec|
-|patch   |/patch-content.txt                      |
-|ensure  |response code equals|204                |
-|get     |/patch-content.txt                      |
-|ensure  |response code equals|200                |
-|ensure  |body has content    |patched content    |
-|set data|default content                         |
-|set etag|5c36acad75b78b82be6d9cbbd6143ab7e0cc04b0|
-|patch   |/patch-content.txt                      |
-|get     |/patch-content.txt                      |
-|ensure  |body has content    |default content    |
+|script          |http browser                            |
+|set host        |localhost                               |
+|set port        |5000                                    |
+|get             |/patch-content.txt                      |
+|ensure          |response code equals|200                |
+|ensure          |body has content    |default content    |
+|set content type|application/unix-diff                   |
+|set data        |!-1c1
+< default content
+\ No newline at end of file
+---
+> patched content
+\ No newline at end of file-!                             |
+|set etag        |dc50a0d27dda2eee9f65644cd7e4c9cf11de8bec|
+|patch           |/patch-content.txt                      |
+|ensure          |response code equals  |204              |
+|get             |/patch-content.txt                      |
+|ensure          |response code equals  |200              |
+|ensure          |body has content      |patched content  |
+|set content type|application/unix-diff                   |
+|set data        |!-1c1
+< patched content
+\ No newline at end of file
+---
+> default content
+\ No newline at end of file-!                             |
+|set etag        |5c36acad75b78b82be6d9cbbd6143ab7e0cc04b0|
+|patch           |/patch-content.txt                      |
+|get             |/patch-content.txt                      |
+|ensure          |body has content    |default content    |

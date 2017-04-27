@@ -21,6 +21,7 @@ public class HttpBrowser {
     private String host;
     private String data;
     private String eTag;
+    private String contentType;
     private int port;
     private HttpResponse response;
     private int latestResponseCode;
@@ -40,6 +41,10 @@ public class HttpBrowser {
 
     public void setEtag(String eTag) {
         this.eTag = eTag;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
     }
 
     public void get(String url) throws IOException {
@@ -64,7 +69,7 @@ public class HttpBrowser {
 
     public void patch(String url) throws IOException {
         Http browser = new Http(host, port);
-        storeResponseInfoFrom(browser.patch(url, data, eTag));
+        storeResponseInfoFrom(browser.patch(url, data, contentType, eTag));
     }
 
     public void delete(String url) throws IOException {

@@ -41,9 +41,10 @@ public class Http {
         return makeStandardRequest(post);
     }
 
-    public HttpResponse patch(String url, String data, String eTag) throws IOException {
+    public HttpResponse patch(String url, String data, String contentType, String eTag) throws IOException {
         HttpPatch patch = new HttpPatch(fullUrlFrom(url));
         patch.setHeader(HttpHeaders.IF_MATCH, eTag);
+        patch.setHeader(HttpHeaders.CONTENT_TYPE, contentType);
         patch.setEntity(new ByteArrayEntity(dataAsByteArray(data)));
         return makeStandardRequest(patch);
     }
