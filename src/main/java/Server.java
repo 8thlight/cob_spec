@@ -4,6 +4,7 @@ import java.net.Socket;
 public class Server {
     private String startCommand;
     private String directory;
+    private String host;
     private String port;
     static private Process process;
 
@@ -13,6 +14,10 @@ public class Server {
 
     public void setDirectory(String directory) {
         this.directory = directory;
+    }
+
+    public void setHost(String host) {
+      this.host = host;
     }
 
     public void setPort(String port) {
@@ -28,20 +33,26 @@ public class Server {
     }
 
     public boolean hostAvailable() {
-        Socket s = null;
+        Socket socket = null;
         try {
-            s = new Socket("0.0.0.0", Integer.parseInt(port));
+            socket = new Socket(host, Integer.parseInt(port));
             return true;
         } catch (IOException ex) {
             /* ignore */
         } finally {
-            try {
-                if (s != null) s.close();
-            } catch (IOException ex) {
-                /* ignore */
-            }
+          closeSocket(socket);
         }
         return false;
+    }
+
+    private void closeSocket(Socket socket) {
+        try {
+          if (socket != null) {
+              socket.close();
+          }
+        } catch (IOException ex) {
+            /* ignore */
+        }
     }
 
     public void stopServer() throws Exception {
