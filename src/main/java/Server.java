@@ -27,12 +27,12 @@ public class Server {
     public void startServer() throws Exception {
         String command = startCommand + " -p " + port + " -d " + directory;
         process = Runtime.getRuntime().exec(command);
-        while (!hostAvailable()) {
+        while (!serverAvailable()) {
           Thread.sleep(2000);
         }
     }
 
-    public boolean hostAvailable() {
+    public boolean serverAvailable() {
         Socket socket = null;
         try {
             socket = new Socket(host, Integer.parseInt(port));
