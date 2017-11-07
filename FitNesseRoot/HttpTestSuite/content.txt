@@ -5,7 +5,7 @@
 !path target/Fixtures-1.0.jar
 
 !3 User-Defined Variables
-!define SERVER_START_COMMAND {java -jar ../build/libs/HttpServer-1.0-SNAPSHOT.jar -p 5000 -d ./public}
-!define PUBLIC_DIR {./public/}
+-!define SERVER_START_COMMAND {java -jar /path/to/server.jar}
+-!define PUBLIC_DIR {/path/to/cob_spec/public/}
 
 !contents -R2 -g -p -f -h
