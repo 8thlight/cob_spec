@@ -1,6 +1,0 @@
-|script  |http browser            |
-|set host|localhost               |
-|set port|5000                    |
-|set data|"My"="Data"             |
-|put     |/form                   |
-|ensure  |response code equals|200|
