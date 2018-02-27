@@ -154,7 +154,7 @@ public class HttpBrowser {
     }
 
     public String location() {
-        return getHeaderValueFor("location");
+        return getHeaderValueFor(HttpHeaders.LOCATION);
     }
 
     public String contentRange() {
