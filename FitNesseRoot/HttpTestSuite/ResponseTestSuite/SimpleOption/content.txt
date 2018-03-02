@@ -13,8 +13,9 @@ basic methods: GET,HEAD,POST,OPTIONS,PUT.</i>-!
 |head                |/method_options                                           |
 |options             |/method_options2                                          |
 |ensure              |response code equals           |200                       |
-|ensure              |response header allow contains |GET,OPTIONS               |
-|reject              |response header allow contains |HEAD,POST,PUT             |
+|ensure              |response header allow contains |GET,OPTIONS,HEAD          |
+|reject              |response header allow contains |POST                      |
+|reject              |response header allow contains |PUT                       |
 |get                 |/method_options2                                          |
 |options             |/method_options2                                          |
 
