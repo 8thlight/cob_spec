@@ -154,9 +154,17 @@ public class HttpBrowser {
     }
 
     public String location() {
-        Header locationHeader = response.getFirstHeader("location");
+        return getHeaderValueFor(HttpHeaders.LOCATION);
+    }
 
-        return (locationHeader != null) ? locationHeader.getValue() : "";
+    public String contentRange() {
+        return getHeaderValueFor(HttpHeaders.CONTENT_RANGE);
+    }
+
+    private String getHeaderValueFor(String name) {
+        Header header = response.getFirstHeader(name);
+
+        return (header != null) ? header.getValue() : "";
     }
 
     public boolean responseHeaderAllowContains(String csvAllows) {
@@ -180,8 +188,8 @@ public class HttpBrowser {
     }
 
     public boolean hasBasicAuth() {
-	Header authTypeHeader = response.getFirstHeader(HttpHeaders.WWW_AUTHENTICATE);
-	return authTypeHeader != null && authTypeHeader.getValue().contains(AuthSchemes.BASIC);
+        Header authTypeHeader = response.getFirstHeader(HttpHeaders.WWW_AUTHENTICATE);
+        return authTypeHeader != null && authTypeHeader.getValue().contains(AuthSchemes.BASIC);
     }
 
     public boolean contentTypeIs(String type) {
