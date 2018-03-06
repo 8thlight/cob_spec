@@ -2,5 +2,5 @@
 |set host|localhost               |
 |set port|5000                    |
 |set data|"My"="Data"             |
-|put     |/form                   |
+|put     |/put-target             |
 |ensure  |response code equals|200|
