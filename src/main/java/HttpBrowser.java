@@ -187,6 +187,12 @@ public class HttpBrowser {
         return true;
     }
 
+    public boolean responseHeaderLocationEquals(String expectedlocation) {
+        String responseLocation = getHeaderValueFor(HttpHeaders.LOCATION);
+
+        return responseLocation.equals(expectedlocation);
+    }
+
     public boolean hasBasicAuth() {
         Header authTypeHeader = response.getFirstHeader(HttpHeaders.WWW_AUTHENTICATE);
         return authTypeHeader != null && authTypeHeader.getValue().contains(AuthSchemes.BASIC);
