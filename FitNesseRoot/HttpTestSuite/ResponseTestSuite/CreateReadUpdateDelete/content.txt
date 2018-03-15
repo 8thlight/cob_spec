@@ -20,7 +20,3 @@
 |ensure    |response code equals              |200             |
 |get       |/form/data                                         |
 |ensure    |response code equals              |404             |
-|delete    |/form                                              |
-|ensure    |response code equals              |200             |
-|get       |/form                                              |
-|ensure    |response code equals              |404             |
