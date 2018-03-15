@@ -1,22 +1,22 @@
 |script    |http browser                                       |
 |set host  |localhost                                          |
 |set port  |5000                                               |
-|get       |/form/data                                         |
+|get       |/cat-form/data                                     |
 |ensure    |response code equals              |404             |
 |set data  |data=fatcat                                        |
-|post      |/form                                              |
+|post      |/cat-form                                          |
 |ensure    |response code equals              |201             |
-|ensure    |response header location equals   |/form/data      |
-|get       |/form/data                                         |
+|ensure    |response header location equals   |/cat-form/data  |
+|get       |/cat-form/data                                     |
 |ensure    |response code equals              |200             |
 |ensure    |body has content                  |data=fatcat     |
 |set data  |data=heathcliff                                    |
-|put       |/form/data                                         |
+|put       |/cat-form/data                                     |
 |ensure    |response code equals              |200             |
-|get       |/form/data                                         |
+|get       |/cat-form/data                                     |
 |ensure    |response code equals              |200             |
 |ensure    |body has content                  |data=heathcliff |
-|delete    |/form/data                                         |
+|delete    |/cat-form/data                                     |
 |ensure    |response code equals              |200             |
-|get       |/form/data                                         |
+|get       |/cat-form/data                                     |
 |ensure    |response code equals              |404             |
