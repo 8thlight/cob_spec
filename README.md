@@ -2,17 +2,20 @@ Cob Spec
 ========
 Cob Spec is a suite of tests used to validate a web server to ensure it adheres to [HTTP specifications](https://tools.ietf.org/html/rfc7230). These acceptance tests were created using a testing suite called [FitNesse](http://fitnesse.org). FitNesse is an application testing suite that allows you to test the business layer of your application.
 
+Setup
+------------
+
+Cob Spec requires [Maven](https://maven.apache.org/install.html) and [JDK 8](https://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html) to be installed to run correctly.  
+
+Getting Started
+----------------
+
 To test your server against the Cob Spec suite of tests, follow the instructions below.
 
     git clone git@github.com:8thlight/cob_spec.git
     cd cob_spec
     mvn package  
   
-Setup
-------------
-
-Cob Spec requires [Maven](https://maven.apache.org/install.html) and [JDK 8](https://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html) to be installed.  
-
 Starting Fitnesse Server
 ------------------------
 Start the Fitnesse server on port 9090.
