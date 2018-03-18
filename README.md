@@ -11,7 +11,7 @@ To test your server against the Cob Spec suite of tests, follow the instructions
 Setup
 ------------
 
-Cob Spec requires maven and JDK 8 to be installed.  
+Cob Spec requires [Maven](https://maven.apache.org/install.html) and [JDK 8](https://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html) to be installed.  
 
 Starting Fitnesse Server
 ------------------------
