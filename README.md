@@ -6,7 +6,12 @@ To test your server against the Cob Spec suite of tests, follow the instructions
 
     git clone git@github.com:8thlight/cob_spec.git
     cd cob_spec
-    mvn package
+    mvn package  
+  
+Setup
+------------
+
+Cob Spec requires maven and JDK 8 to be installed.  
 
 Starting Fitnesse Server
 ------------------------
