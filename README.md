@@ -65,16 +65,21 @@ Adding CI
 - To remove a test in `PassingTests`: `rm -rf PassingTests/ResponseTestSuite/SimpleGet/`
 - Navigate to your server's directory. Create a new `.sh` file `touch run_cob_spec_tests.sh`
 - Open the file and add the follwing:
-  `#!/bin/bash
-   set -e
-   cd cob_spec
-   mvn package
-   java -jar fitnesse.jar -c "PassingTests?suite&format=test"
-   `
+  `#!/bin/bash`
+
+  ` set -e`
+
+  `cd cob_spec`
+
+  `mvn package`
+
+   `java -jar fitnesse.jar -c "PassingTests?suite&format=test"`
+
 - The following CI instructions are for TravisCI but follow a similar pattern for other CI platforms. In .travis.yml:
-    `before_install:
-        - chmod +x run_cob_spec_tests.sh
-     script:
-        - "./run_cob_spec_tests.sh"
-    `
+    `before_install:`
+
+    `   - chmod +x run_cob_spec_tests.sh`
+    `script:`
+
+    `   - "./run_cob_spec_tests.sh"`
 - Push branch and run the build
