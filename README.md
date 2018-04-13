@@ -79,6 +79,7 @@ Adding CI
     `before_install:`
 
     `   - chmod +x run_cob_spec_tests.sh`
+
     `script:`
 
     `   - "./run_cob_spec_tests.sh"`
