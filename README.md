@@ -52,3 +52,36 @@ Running Tests
 - To run the simple http request tests, first click the ResponseTestSuite link, then click the Suite button.
 - To run the tests that require threading, first click the SimultaniousTestSuite link, then click the Suite button.
 - To run a test individually, first click on the test link, then click the Test button.
+
+Adding CI
+------------
+- Fork cob spec
+- On your local machine navigate to your server's directory
+- Create a submodule using the forked copy of cob spec `git submodule add https://github.com/myusername/cob_spec`
+- Within this new submodule navigate to `FitNesseRoot` and create a new directory `mkdir PassingTests`
+- Copy contents of `HttpTestSuite` into your new directory `PassingTests` by issuing the following command: `cp -r HttpTestSuite/ PassingTests/`
+- Navigate into `PassingTests/ResponseTestSuite` and add/remove cob spec tests as necessary
+- To add a test to the `PassingTests`: `cp -r HttpTestSuite/ResponseTestSuite/SimpleGet PassingTests/ResponseTestSuite/SimpleGet/`
+- To remove a test in `PassingTests`: `rm -rf PassingTests/ResponseTestSuite/SimpleGet/`
+- Navigate to your server's directory. Create a new `.sh` file `touch run_cob_spec_tests.sh`
+- Open the file and add the following:
+
+  `#!/bin/bash`
+
+  ` set -e`
+
+  `cd cob_spec`
+
+  `mvn package`
+
+   `java -jar fitnesse.jar -c "PassingTests?suite&format=test"`
+
+- The following CI instructions are for TravisCI but follow a similar pattern for other CI platforms. In .travis.yml:
+    `before_install:`
+
+    `   - chmod +x run_cob_spec_tests.sh`
+
+    `script:`
+
+    `   - "./run_cob_spec_tests.sh"`
+- Push branch and run the build
