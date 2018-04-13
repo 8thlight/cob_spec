@@ -59,12 +59,13 @@ Adding CI
 - On your local machine navigate to your server's directory
 - Create a submodule using the forked copy of cob spec `git submodule add https://github.com/myusername/cob_spec`
 - Within this new submodule navigate to `FitNesseRoot` and create a new directory `mkdir PassingTests`
-- Copy contents of `HttpTestSuite` into your new directory `PassingTests` by issuing the following command `cp -r HttpTestSuite/ PassingTests/`
+- Copy contents of `HttpTestSuite` into your new directory `PassingTests` by issuing the following command: `cp -r HttpTestSuite/ PassingTests/`
 - Navigate into `PassingTests/ResponseTestSuite` and add/remove cob spec tests as necessary
 - To add a test to the `PassingTests`: `cp -r HttpTestSuite/ResponseTestSuite/SimpleGet PassingTests/ResponseTestSuite/SimpleGet/`
 - To remove a test in `PassingTests`: `rm -rf PassingTests/ResponseTestSuite/SimpleGet/`
 - Navigate to your server's directory. Create a new `.sh` file `touch run_cob_spec_tests.sh`
-- Open the file and add the follwing:
+- Open the file and add the following:
+
   `#!/bin/bash`
 
   ` set -e`
