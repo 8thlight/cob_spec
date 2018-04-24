@@ -5,8 +5,7 @@ When you execute a test page, !-FitNesse-! gathers up the classpaths prior to ru
 |echo fixture|
 
 !define PROPERTY_DISPLAY (
-&bang;define TEST_SYSTEM {SLIM}
-&bang;define SLIM_PORT {9900}
+&bang;define TEST_SYSTEM {slim}
 !path classes
 !path fitnesse-standalone.jar
 
