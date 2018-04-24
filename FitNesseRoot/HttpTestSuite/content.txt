@@ -1,8 +1,7 @@
 !3 Test Parameters
 !define TEST_SYSTEM {slim}
 
-!pomFile pom.xml
-!path target/Fixtures-1.0.jar
+!path target/Fixtures-1.0-jar-with-dependencies.jar
 
 !3 User-Defined Variables
 -!define SERVER_START_COMMAND {java -jar /path/to/server.jar}

@@ -6,6 +6,6 @@
 *.zip
 FitNesseRoot/ErrorLogs
 FitNesseRoot/files/testResults
-FitNesseRoot/RecentChanges/
+FitNesseRoot/RecentChanges*
 target/
 tmp/
