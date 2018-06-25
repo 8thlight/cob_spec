@@ -7,10 +7,7 @@ A request passing username "admin" and password "hunter2" should return log info
 |get                 |/logs                                       |
 |ensure              |response code equals|401                    |
 |ensure              |has basic auth                              |
-|reject              |body has content    |GET /log HTTP/1.1      |
-|get                 |/log                                        |
-|put                 |/these                                      |
-|head                |/requests                                   |
+|reject              |body has content    |GET /log HTTP/1.1      |                                |
 |get with credentials|/logs                                       |
 |ensure              |response code equals|200                    |
 |ensure              |body has content    |GET /log HTTP/1.1      |
