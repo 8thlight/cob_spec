@@ -6,6 +6,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.*;
 import org.apache.http.entity.ByteArrayEntity;
+import org.apache.http.protocol.HTTP;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 
@@ -37,6 +38,7 @@ public class Http {
 
     public HttpResponse post(String url, String data) throws IOException {
         HttpPost post = new HttpPost(fullUrlFrom(url));
+        post.setHeader(HttpHeaders.CONTENT_TYPE, HTTP.PLAIN_TEXT_TYPE);
         post.setEntity(new ByteArrayEntity(dataAsByteArray(data)));
         return makeStandardRequest(post);
     }
