@@ -1,5 +1,6 @@
 !-<i>The <code>/logs</code> url should be protected with <a href="http://www.w3.org/Protocols/HTTP/1.0/spec.html#BasicAA">basic access authentication</a>.
-A request passing username "admin" and password "hunter2" should return log information. All others should return a 401 Unauthorized response.</i>-!
+A request passing username "admin" and password "hunter2" should return log information. All others should return a 401 Unauthorized response.
+Additionally, the <code>/logs</code> url only allows <code>GET</code> requests. Any authenticated requests with verbs other than <code>GET</code> should return a 405 Method Not Allowed response.</i>-!
 
 |script              |http browser                                |
 |set host            |localhost                                   |
@@ -7,14 +8,17 @@ A request passing username "admin" and password "hunter2" should return log info
 |get                 |/logs                                       |
 |ensure              |response code equals|401                    |
 |ensure              |has basic auth                              |
-|reject              |body has content    |GET /log HTTP/1.1      |
-|get                 |/log                                        |
+|reject              |body has content    |GET /logs HTTP/1.1      |
+|get                 |/logs                                       |
 |put                 |/these                                      |
 |head                |/requests                                   |
 |get with credentials|/logs                                       |
 |ensure              |response code equals|200                    |
-|ensure              |body has content    |GET /log HTTP/1.1      |
+|ensure              |body has content    |GET /logs HTTP/1.1      |
 |ensure              |body has content    |PUT /these HTTP/1.1    |
 |ensure              |body has content    |HEAD /requests HTTP/1.1|
+|post with credentials|/logs                                      |
+|ensure              |response code equals|405                    |
+|reject              |body has content    |GET /logs HTTP/1.1      |
 
 !contents -R2 -g -p -f -h

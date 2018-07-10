@@ -92,6 +92,11 @@ public class HttpBrowser {
         storeResponseInfoFrom(browser.getWithCredentials(url, "admin", "hunter2"));
     }
 
+    public void postWithCredentials(String url) throws IOException {
+        Http browser = new Http(host, port);
+        storeResponseInfoFrom(browser.postWithCredentials(url, "admin", "hunter2"));
+    }
+
     public void getWithCookie(String url) throws IOException {
         Http browser = new Http(host, port);
         Header setCookie = response.getFirstHeader("Set-Cookie");

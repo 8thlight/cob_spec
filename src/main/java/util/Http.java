@@ -87,6 +87,21 @@ public class Http {
         return client.execute(request);
     }
 
+    public HttpResponse postWithCredentials(String url, String username, String password) throws IOException {
+        HttpClient client = HttpClients.custom().build();
+
+        String authCredentials = username + ":" + password;
+        String authSchemeWithCredentials = "Basic " + base64Encode(authCredentials);
+
+        HttpUriRequest request = RequestBuilder
+                .post()
+                .setUri(fullUrlFrom(url))
+                .setHeader(HttpHeaders.AUTHORIZATION, authSchemeWithCredentials)
+                .build();
+
+        return client.execute(request);
+    }
+
     public HttpResponse getWithCookie(String url, String cookie) throws IOException {
         HttpClient client = HttpClients.custom().build();
         HttpUriRequest request = RequestBuilder
