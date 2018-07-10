@@ -1,5 +1,9 @@
 |script  |http browser            |
 |set host|localhost               |
 |set port|5000                    |
-|get     |/                       |
+|get     |/file1                  |
 |ensure  |response code equals|200|
+|ensure  |body has file contents|public/file1|
+|get     |/file2                  |
+|ensure  |response code equals|200|
+|ensure  |body has file contents|public/file2|
