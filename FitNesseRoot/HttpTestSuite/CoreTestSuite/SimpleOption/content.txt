@@ -1,22 +1,17 @@
-!-<i>OPTIONS to /method_options should return the following
-basic methods: GET,HEAD,POST,OPTIONS,PUT.</i>-!
+!-<i>OPTIONS to any path except /logs should return the
+basic methods: GET,HEAD,POST,OPTIONS,PUT,DELETE.</i>-!
 
 |script              |http browser                                              |
 |set host            |localhost                                                 |
 |set port            |5000                                                      |
-|options             |/method_options                                           |
+|options             |/file1                                                    |
 |ensure              |response code equals           |200                       |
-|ensure              |response header allow contains |GET,HEAD,POST,OPTIONS,PUT |
-|get                 |/method_options                                           |
-|put                 |/method_options                                           |
-|post                |/method_options                                           |
-|head                |/method_options                                           |
-|options             |/method_options2                                          |
+|ensure              |response header allow contains |GET,HEAD,POST,OPTIONS,PUT,DELETE|
+|options             |/logs                                                     |
 |ensure              |response code equals           |200                       |
 |ensure              |response header allow contains |GET,OPTIONS,HEAD          |
 |reject              |response header allow contains |POST                      |
 |reject              |response header allow contains |PUT                       |
-|get                 |/method_options2                                          |
-|options             |/method_options2                                          |
+|reject              |response header allow contains |DELETE                    |
 
 !contents -R2 -g -p -f -h
