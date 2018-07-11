@@ -2,6 +2,10 @@ Cob Spec
 ========
 Cob Spec is a suite of tests used to validate a web server to ensure it adheres to [HTTP specifications](https://tools.ietf.org/html/rfc7230). These acceptance tests were created using a testing suite called [FitNesse](http://fitnesse.org). FitNesse is an application testing suite that allows you to test the business layer of your application.
 
+The test helper code used by FitNess is located in `src/main/java`. Be aware that the Cob Spec will not regenerate the `/public` directory between executions and it is therefore possible for this directory to end up in a bad state.
+
+The tests are grouped into sub-suites. You should aim to complete the `File Server` suite first as this will lay the groundwork for your server's functionality. Your challenge is then to elegantly integrate the further test requirements into your design.
+
 Setup
 ------------
 
