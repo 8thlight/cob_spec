@@ -4,12 +4,17 @@ basic methods: GET,HEAD,POST,OPTIONS,PUT,DELETE.</i>-!
 |script              |http browser                                              |
 |set host            |localhost                                                 |
 |set port            |5000                                                      |
+|options             |/no_file_here.txt                                         |
+|ensure              |response code equals           |200                       |
+|ensure              |response header allow contains |GET,HEAD,OPTIONS,POST,DELETE|
+|reject              |response header allow contains |PUT                       |
 |options             |/file1                                                    |
 |ensure              |response code equals           |200                       |
-|ensure              |response header allow contains |GET,HEAD,POST,OPTIONS,PUT,DELETE|
+|ensure              |response header allow contains |GET,HEAD,OPTIONS,PUT,DELETE|
+|reject              |response header allow contains |POST                      |
 |options             |/logs                                                     |
 |ensure              |response code equals           |200                       |
-|ensure              |response header allow contains |GET,OPTIONS,HEAD          |
+|ensure              |response header allow contains |GET,HEAD,OPTIONS          |
 |reject              |response header allow contains |POST                      |
 |reject              |response header allow contains |PUT                       |
 |reject              |response header allow contains |DELETE                    |
