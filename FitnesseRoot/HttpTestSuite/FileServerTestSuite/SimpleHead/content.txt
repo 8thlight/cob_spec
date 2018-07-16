@@ -6,6 +6,6 @@
 | head | / |
 | ensure | response code equals | 200 |
 | ensure | body has no content |
-| head | /foobar |
+| head | /no_file_here.txt |
 | ensure | response code equals | 404 |
 | ensure | body has no content |

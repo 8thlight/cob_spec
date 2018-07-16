@@ -5,9 +5,6 @@
 |ensure  |response code equals|404              |
 |set data|"Some text for a new file"            |
 |put     |/new_file.txt                         |
-|ensure  |response code equals|405              |
-|set data|"Some text for a new file"            |
-|post    |/new_file.txt                         |
 |ensure  |response code equals|201              |
 |get     |/new_file.txt                         |
 |ensure  |response code equals|200              |
@@ -17,9 +14,6 @@
 |ensure  |response code equals|200              |
 |get     |/new_file.txt                         |
 |ensure  |body has content  |"Some updated text"|
-|set data|"Some updated text"                   |
-|post    |/new_file.txt                         |
-|ensure  |response code equals|405              |
 |delete  |/new_file.txt                         |
 |ensure  |response code equals|200              |
 |get     |/new_file.txt                         |

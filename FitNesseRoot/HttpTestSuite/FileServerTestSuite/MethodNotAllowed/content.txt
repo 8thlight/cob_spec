@@ -3,13 +3,7 @@
 |set port      |5000                        |
 |get           |/file1                      |
 |ensure        |response code equals  | 200 |
-|post           |/file1                     |
-|ensure        |response code equals  | 405 |
-|bogus Request |/file1                      |
-|ensure        |response code equals  | 405 |
-|get           |/no_file_here.txt           |
-|ensure        |response code equals  | 404 |
-|put           |/no_file_here.txt              |
+|post          |/file1                      |
 |ensure        |response code equals  | 405 |
 |bogus Request |/file1                      |
 |ensure        |response code equals  | 405 |

@@ -1,16 +1,17 @@
-!-<i>OPTIONS to any path except /logs should return the
-basic methods: GET,HEAD,POST,OPTIONS,PUT,DELETE.</i>-!
+!-<i>OPTIONS to any existing file path except /logs should return the
+basic methods: GET,HEAD,OPTIONS,PUT,DELETE.</i>-!
 
 |script              |http browser                                              |
 |set host            |localhost                                                 |
 |set port            |5000                                                      |
-|options             |/no_file_here.txt                                         |
-|ensure              |response code equals           |200                       |
-|ensure              |response header allow contains |GET,HEAD,OPTIONS,POST,DELETE|
-|reject              |response header allow contains |PUT                       |
 |options             |/file1                                                    |
 |ensure              |response code equals           |200                       |
 |ensure              |response header allow contains |GET,HEAD,OPTIONS,PUT,DELETE|
+|reject              |response header allow contains |POST                      |
+|options             |/no_file_here.txt                                         |
+|ensure              |response code equals           |200                       |
+|ensure              |response header allow contains |GET,HEAD,OPTIONS,PUT      |
+|reject              |response header allow contains |DELETE                    |
 |reject              |response header allow contains |POST                      |
 |options             |/logs                                                     |
 |ensure              |response code equals           |200                       |
