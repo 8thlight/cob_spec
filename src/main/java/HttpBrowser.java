@@ -52,6 +52,11 @@ public class HttpBrowser {
         storeResponseInfoFrom(browser.put(url, data));
     }
 
+    public void putAsForm(String url) throws IOException {
+        Http browser = new Http(host, port);
+        storeResponseInfoFrom(browser.putAsForm(url, data));
+    }
+
     public void head(String url) throws IOException {
         Http browser = new Http(host, port);
         storeResponseInfoFrom(browser.head(url));
@@ -60,6 +65,11 @@ public class HttpBrowser {
     public void post(String url) throws IOException {
         Http browser = new Http(host, port);
         storeResponseInfoFrom(browser.post(url, data));
+    }
+
+    public void postAsForm(String url) throws IOException {
+        Http browser = new Http(host, port);
+        storeResponseInfoFrom(browser.postAsForm(url, data));
     }
 
     public void patch(String url) throws IOException {
