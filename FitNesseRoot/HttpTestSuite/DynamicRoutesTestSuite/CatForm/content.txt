@@ -1,9 +1,8 @@
 |script      |http browser                                  |
 |set host    |localhost                                     |
 |set port    |5000                                          |
-|get         |/cat-form                                     |
-|ensure      |response code equals           |200           |
-|reject      |body has content               |cat|
+|get         |/cat-form/data                                |
+|ensure      |response code equals           |404           |
 |set data    |data=fatcat|
 |post as form|/cat-form                                     |
 |ensure      |response code equals           |201           |
