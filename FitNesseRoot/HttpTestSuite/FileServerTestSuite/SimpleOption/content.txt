@@ -10,8 +10,7 @@ basic methods: GET,HEAD,OPTIONS,PUT,DELETE.</i>-!
 |reject              |response header allow contains |POST                      |
 |options             |/no_file_here.txt                                         |
 |ensure              |response code equals           |200                       |
-|ensure              |response header allow contains |GET,HEAD,OPTIONS,PUT      |
-|reject              |response header allow contains |DELETE                    |
+|ensure              |response header allow contains |GET,HEAD,OPTIONS,PUT,DELETE|
 |reject              |response header allow contains |POST                      |
 |options             |/logs                                                     |
 |ensure              |response code equals           |200                       |
