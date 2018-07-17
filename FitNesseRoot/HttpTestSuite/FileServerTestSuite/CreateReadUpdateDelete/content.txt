@@ -6,6 +6,7 @@
 |set data|Some text for a new file|
 |put     |/new_file.txt                         |
 |ensure  |response code equals|201              |
+|ensure  |response header location equals|/new_file.txt|
 |get     |/new_file.txt                         |
 |ensure  |response code equals|200              |
 |ensure  |body has content|Some text for a new file|
