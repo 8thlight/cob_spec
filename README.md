@@ -2,6 +2,10 @@ Cob Spec
 ========
 Cob Spec is a suite of tests used to validate a web server to ensure it adheres to [HTTP specifications](https://tools.ietf.org/html/rfc7230). These acceptance tests were created using a testing suite called [FitNesse](http://fitnesse.org). FitNesse is an application testing suite that allows you to test the business layer of your application.
 
+The test helper code used by FitNess is located in `src/main/java`. Be aware that the Cob Spec will not regenerate the `/public` directory between executions and it is therefore possible for this directory to end up in a bad state.
+
+The tests are grouped into sub-suites. You should aim to complete the `File Server` suite first as this will lay the groundwork for your server's functionality. Your challenge is then to elegantly integrate the further test requirements into your design.
+
 Setup
 ------------
 
@@ -48,7 +52,8 @@ Your server jar needs to take two command line arguments.
 
 Running Tests
 -------------
-- To run all tests, click the Suite button.
-- To run the simple http request tests, first click the ResponseTestSuite link, then click the Suite button.
-- To run the tests that require threading, first click the SimultaniousTestSuite link, then click the Suite button.
-- To run a test individually, first click on the test link, then click the Test button.
+- To run all tests, click the `Suite` button.
+- To run the file server request tests, first click the `File Server Test Suite` link, then click the `Suite` button.
+- To run the dynamic route request tests, first click the `Dynamic Routes Test Suite` link, then click the `Suite` button.
+- To run the tests that require threading, first click the `Simultaneous Test Suite` link, then click the `Suite` button.
+- To run a test individually, first click on the test link, then click the `Test` button.

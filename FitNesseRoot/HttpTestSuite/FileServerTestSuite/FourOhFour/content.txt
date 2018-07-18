@@ -1,0 +1,9 @@
+| script | http browser |
+| set host | localhost |
+| set port | 5000      |
+| get | /no_file_here.txt |
+| ensure | response code equals | 404 |
+| get | /abcdefghijklmnop.jpg |
+| ensure | response code equals | 404 |
+| get | /foobar |
+| ensure | response code equals | 404 |

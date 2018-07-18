@@ -5,7 +5,9 @@ import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.*;
+import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.entity.ByteArrayEntity;
+import org.apache.http.protocol.HTTP;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 
@@ -31,12 +33,28 @@ public class Http {
 
     public HttpResponse put(String url, String data) throws IOException {
         HttpPut put = new HttpPut(fullUrlFrom(url));
+        put.setHeader(HttpHeaders.CONTENT_TYPE, HTTP.PLAIN_TEXT_TYPE);
+        put.setEntity(new ByteArrayEntity(dataAsByteArray(data)));
+        return makeStandardRequest(put);
+    }
+
+    public HttpResponse putAsForm(String url, String data) throws IOException {
+        HttpPut put = new HttpPut(fullUrlFrom(url));
+        put.setHeader(HttpHeaders.CONTENT_TYPE, URLEncodedUtils.CONTENT_TYPE);
         put.setEntity(new ByteArrayEntity(dataAsByteArray(data)));
         return makeStandardRequest(put);
     }
 
     public HttpResponse post(String url, String data) throws IOException {
         HttpPost post = new HttpPost(fullUrlFrom(url));
+        post.setHeader(HttpHeaders.CONTENT_TYPE, HTTP.PLAIN_TEXT_TYPE);
+        post.setEntity(new ByteArrayEntity(dataAsByteArray(data)));
+        return makeStandardRequest(post);
+    }
+
+    public HttpResponse postAsForm(String url, String data) throws IOException {
+        HttpPost post = new HttpPost(fullUrlFrom(url));
+        post.setHeader(HttpHeaders.CONTENT_TYPE, URLEncodedUtils.CONTENT_TYPE);
         post.setEntity(new ByteArrayEntity(dataAsByteArray(data)));
         return makeStandardRequest(post);
     }
@@ -78,6 +96,21 @@ public class Http {
 
         HttpUriRequest request = RequestBuilder
                 .get()
+                .setUri(fullUrlFrom(url))
+                .setHeader(HttpHeaders.AUTHORIZATION, authSchemeWithCredentials)
+                .build();
+
+        return client.execute(request);
+    }
+
+    public HttpResponse postWithCredentials(String url, String username, String password) throws IOException {
+        HttpClient client = HttpClients.custom().build();
+
+        String authCredentials = username + ":" + password;
+        String authSchemeWithCredentials = "Basic " + base64Encode(authCredentials);
+
+        HttpUriRequest request = RequestBuilder
+                .post()
                 .setUri(fullUrlFrom(url))
                 .setHeader(HttpHeaders.AUTHORIZATION, authSchemeWithCredentials)
                 .build();

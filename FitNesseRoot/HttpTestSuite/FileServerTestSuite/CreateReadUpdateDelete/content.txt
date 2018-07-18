@@ -1,0 +1,21 @@
+|script  |http browser                          |
+|set host|localhost                             |
+|set port|5000                                  |
+|get     |/new_file.txt                         |
+|ensure  |response code equals|404              |
+|set data|Some text for a new file|
+|put     |/new_file.txt                         |
+|ensure  |response code equals|201              |
+|get     |/new_file.txt                         |
+|ensure  |response code equals|200              |
+|ensure  |body has content|Some text for a new file|
+|set data|Some updated text|
+|put     |/new_file.txt                         |
+|ensure  |response code equals|200              |
+|get     |/new_file.txt                         |
+|ensure  |body has content    |Some updated text|
+|delete  |/new_file.txt                         |
+|ensure  |response code equals|200              |
+|get     |/new_file.txt                         |
+|ensure  |response code equals|404              |
+|reject  |body has content    |Some updated text|
