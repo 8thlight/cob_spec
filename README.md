@@ -9,7 +9,7 @@ The tests are grouped into sub-suites. You should aim to complete the `File Serv
 Setup
 ------------
 
-Cob Spec requires [Maven](https://maven.apache.org/install.html) and [JDK 8](https://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html) to be installed to run correctly.  
+Cob Spec requires [Maven](https://maven.apache.org/install.html) and [JDK 8](https://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html) to be installed to run correctly.
 
 Getting Started
 ----------------
@@ -18,8 +18,8 @@ To test your server against the Cob Spec suite of tests, follow the instructions
 
     git clone git@github.com:8thlight/cob_spec.git
     cd cob_spec
-    mvn package  
-  
+    mvn clean compile assembly:single
+
 Starting Fitnesse Server
 ------------------------
 Start the Fitnesse server on port 9090.
