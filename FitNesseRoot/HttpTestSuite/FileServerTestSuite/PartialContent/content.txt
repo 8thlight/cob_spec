@@ -13,6 +13,17 @@
 |ensure  |response code equals          |206                                            |
 |check   |content range                 |bytes 4-76/77                                  |
 |ensure  |body has partial file contents|public/partial_content.txt|from|4        |to|76|
-|get     |/partial_content.txt          |range start               |75  |range end|80   |
+|get     |/partial_content.txt          |range start               |10  |range end|0    |
+|ensure  |response code equals          |416                                            |
+|check   |content range                 |bytes */77                                     |
+|get     |/partial_content.txt          |range start               |75   |range end|80  |
+|ensure  |response code equals          |206                                            |
+|check   |content range                 |bytes 75-76/77                                  |
+|ensure  |body has partial file contents|public/partial_content.txt|from|75        |to|76|
+|get     |/partial_content.txt          |range start               |  |range end|78    |
+|ensure  |response code equals          |206                                            |
+|check   |content range                 |bytes 0-76/77                                  |
+|ensure  |body has partial file contents|public/partial_content.txt|from|0        |to|76|
+|get     |/partial_content.txt          |range start               |77|range end|    |
 |ensure  |response code equals          |416                                            |
 |check   |content range                 |bytes */77                                     |
