@@ -6,4 +6,4 @@
 |post          |/file1                      |
 |ensure        |response code equals  | 405 |
 |bogus Request |/file1                      |
-|ensure        |response code equals  | 405 |
+|ensure        |response code equals  | 501 |
