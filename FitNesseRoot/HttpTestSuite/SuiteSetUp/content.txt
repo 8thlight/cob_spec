@@ -3,3 +3,4 @@
 |set port         |5000                   |
 |set directory    |${PUBLIC_DIR}          |
 |start server                             |
+|ensure   |server is started within |PT10S|
