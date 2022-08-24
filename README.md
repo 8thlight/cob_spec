@@ -1,3 +1,9 @@
+THIS HAS BEEN DEPRECATED
+PLEASE USE THIS INSTEAD: https://github.com/8thlight/http_server_spec
+
+=============
+
+
 Cob Spec
 ========
 Cob Spec is a suite of tests used to validate a web server to ensure it adheres to [HTTP specifications](https://tools.ietf.org/html/rfc7230). These acceptance tests were created using a testing suite called [FitNesse](http://fitnesse.org). FitNesse is an application testing suite that allows you to test the business layer of your application.
